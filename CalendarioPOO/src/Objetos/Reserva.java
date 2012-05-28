@@ -77,6 +77,10 @@ public class Reserva {
     }
     
     public String toString(){
+        return "Reservado";
+    }
+    
+    public String toDetail(){
         return this.cliente +"\n" + this.habitacion + " - " + this.habitacion.getTipoHabitacion() + "\n" + this.dia+"/"+this.mes+"/"+this.anio;
     }
     

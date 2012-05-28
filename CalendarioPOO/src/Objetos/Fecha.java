@@ -16,7 +16,7 @@ public class Fecha {
     private String mes;
     private int mesNumero;
     private int anio;
-    private boolean traductoActivado;
+    public static boolean traductoActivado;
     
     public Fecha(int diaNumero, int mesNumero, int anio){
         this.diaNumero=diaNumero;
@@ -32,14 +32,6 @@ public class Fecha {
         fechaCompleta();
     }
 
-    public void setTraductoActivado(boolean traductoActivado) {
-        this.traductoActivado = traductoActivado;
-    }
-
-    public boolean isTraductoActivado() {
-        return traductoActivado;
-    }
-    
     public int getAnio() {
         return anio;
     }
@@ -90,11 +82,11 @@ public class Fecha {
     
     
     public String toFormatCal(){
-        return Traductor.traduccion(this.dia,this.traductoActivado) + " \n"+ this.diaNumero;
+        return Traductor.traduccion(this.dia,traductoActivado) + " \n"+ this.diaNumero;
     }
     
     public String toString() {
-        return Traductor.traduccion(this.dia,this.traductoActivado) + " " + this.diaNumero + " de " + Traductor.traduccion(this.mes,this.traductoActivado) + " de " + this.anio;
+        return Traductor.traduccion(this.dia,traductoActivado) + " " + this.diaNumero + " de " + Traductor.traduccion(this.mes,traductoActivado) + " de " + this.anio;
     }
     
     public String toFormat(String formato){
@@ -106,11 +98,4 @@ public class Fecha {
         return new Date(this.anio-1900, this.mesNumero-1, this.diaNumero);
     }
     
-    public static void main(String[] args) {
-        Fecha fecha = new Fecha(new Date(112, 4, 27));
-        fecha.setTraductoActivado(false);
-        System.out.println(fecha.toFormatCal());
-        fecha.setTraductoActivado(true);
-        System.out.println(fecha.toFormatCal());
-    }
 }

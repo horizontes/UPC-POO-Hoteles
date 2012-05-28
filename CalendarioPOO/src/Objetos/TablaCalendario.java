@@ -36,6 +36,8 @@ public class TablaCalendario {
         listaReserva.add(new Reserva(cliente9, listaHabitacion.get(22), 28, 5, 2012));
         listaReserva.add(new Reserva(cliente10, listaHabitacion.get(23), 28, 5, 2012));
         listaReserva.add(new Reserva(cliente10, listaHabitacion.get(24), 28, 5, 2012));
+        listaReserva.add(new Reserva(cliente10, listaHabitacion.get(24), 20, 6, 2012));
+        listaReserva.add(new Reserva(cliente10, listaHabitacion.get(23), 20, 6, 2012));
         return this.listaReserva;
     }
     
@@ -67,7 +69,15 @@ public class TablaCalendario {
         return listaHabitacion;
     }
 
-    public Object[][] listaHabitacionesTabla(List<Habitacion> listaHabitacion) {
+    public Object[][] listaHabitacionesTab(List<Habitacion> listaHabitacion) {
+        Object[][] guia = new Object[listaHabitacion.size()][1];
+        for (int i = 0; i < listaHabitacion.size(); i++) {
+            guia[i][0] = listaHabitacion.get(i);
+        }
+        return guia;
+    }
+    
+    public Object[][] listaHabitacionesCom(List<Habitacion> listaHabitacion) {
         Object[][] guia = new Object[1][listaHabitacion.size()];
         for (int i = 0; i < listaHabitacion.size(); i++) {
             guia[0][i] = listaHabitacion.get(i);
@@ -119,7 +129,7 @@ public class TablaCalendario {
     }
 
     public Object[][] LlenadoDeCalendario(int nroSemanas, int dia, int mes, int anio) {
-        Object[][] listaHabitacionesTabla = listaHabitacionesTabla(listaHabitacion);
+        Object[][] listaHabitacionesTabla = listaHabitacionesCom(listaHabitacion);
         Object[] guia = new Object[30];
         System.arraycopy(listaHabitacionesTabla[0], 0, guia, 0, guia.length);
         Fecha[] diasDeSemanasFecha = diasDeSemanasFecha(nroSemanas, dia, mes, anio);
@@ -175,7 +185,7 @@ public class TablaCalendario {
     }
 
     public static void main(String[] args) {
-        Object[][] listaHabitacionesTabla = new TablaCalendario().listaHabitacionesTabla(listaHabitacion);
+        Object[][] listaHabitacionesTabla = new TablaCalendario().listaHabitacionesCom(listaHabitacion);
         for (Object objects : listaHabitacionesTabla[0]) {
             System.out.println(objects);
         }
