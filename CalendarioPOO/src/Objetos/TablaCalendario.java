@@ -168,6 +168,18 @@ public class TablaCalendario {
         return semanas;
     }
     
+    public Mes[] mesesComboBox(Fecha fecha){
+        Mes[] mesesString = new Mes[13];
+        fecha = fecha.add(-7, Calendar.MONTH);
+        
+        for (int i = 0; i < mesesString.length; i++) {
+            fecha = fecha.add(1,Calendar.MONTH);
+            Mes mes = new Mes(fecha.toDate());
+            mesesString[i] = mes;
+        }
+        return mesesString;
+    }
+    
     public Fecha fijarFechaActualEnTabla(Fecha[] diasDeSemanasFecha){
         Fecha fecha;
         fecha = diasDeSemanasFecha[0];

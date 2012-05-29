@@ -80,16 +80,20 @@ public class Fecha {
         this.mes = month.format(new Date(anio - 1900, this.mesNumero - 1, this.diaNumero));
     }
 
-    public Fecha add(int numeroDias) {
+    public Fecha add(int numeroDias, int Calendar_TYPE) {
         Fecha fecha;
         Date date = new Date(this.anio - 1900, this.mesNumero - 1, this.diaNumero);
         Calendar hoy = Calendar.getInstance();
         hoy.setTime(date);
-        hoy.add(Calendar.DATE, numeroDias);
+        hoy.add(Calendar_TYPE, numeroDias);
         fecha = new Fecha(hoy.getTime());
         return fecha;
     }
 
+    public String toFormatMonth(){
+        return Traductor.traduccion(this.mes, traductoActivado) + " \n" + this.anio;
+    }
+    
     public String toFormatCal() {
         return Traductor.traduccion(this.dia, traductoActivado) + " \n" + this.diaNumero;
     }
@@ -112,11 +116,14 @@ public class Fecha {
     }
     
     public static void main(String[] args) {
-        Fecha fecha = new Fecha(28, 05, 2012);
-        Fecha.traductoActivado=true;
-        System.out.println(fecha);
-        fecha = fecha.add(-3);
-        System.out.println(fecha);
+        Fecha fecha = new Fecha(29, 5, 2012);
+        String [] mesesString = new String[13];
+        fecha = fecha.add(-7, Calendar.MONTH);
+        System.out.println(fecha.toComplet());
+        for (int i = 0; i < mesesString.length; i++) {
+            fecha = fecha.add(1,Calendar.MONTH);
+             mesesString[i] = fecha.toFormatMonth();
+        }
     }
     
 }
