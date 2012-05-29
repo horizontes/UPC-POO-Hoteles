@@ -7,6 +7,7 @@ package Calendario;
 import Objetos.Fecha;
 import Objetos.TablaCalendario;
 import java.util.Date;
+import javax.swing.JTable;
 
 /**
  *
@@ -23,34 +24,16 @@ public class DashBoard extends javax.swing.JFrame {
     }
 
     private void iniciarCalendario() {
-
+        //al iniciar calendario estará en la fecha de hoy
         Date date = new Date();
         int dia = date.getDate();
         int mes = date.getMonth() + 1;
         int anio = date.getYear() + 1900;
-        tabla2 = new TablaCalendario();
+        tablaCalendario = new TablaCalendario();
         //Fechas en español
         Fecha.traductoActivado = true;
-        listaHabitacionesTabla = tabla2.listaHabitacionesTab(TablaCalendario.listaHabitacion);
-        String[] titulos = tabla2.diasDeSemanasString(1, dia, mes, anio);
-        Object[][] LlenadoDeCalendario = tabla2.LlenadoDeCalendario(1, dia, mes, anio);
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                listaHabitacionesTabla,
-                new String[]{
-                    "Numero de Hab."
-                }));
-
-        jScrollPane1.setViewportView(jTable1);
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-                LlenadoDeCalendario,
-                titulos));
-
-        jScrollPane2.setViewportView(jTable2);
-        
-        //llenar calendario seleccionado
-        titulosSelected=titulos;
-        calendarioSelected=LlenadoDeCalendario;
+        //Llenado de columna de la tabla calendario
+        iniciarTablaCalendario(jTable1, jTable2, 1, 28, 5, 2012, listaHabitacionesTablaSelected);
     }
 
     /**
@@ -197,86 +180,30 @@ public class DashBoard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String[] titulos = tabla2.diasDeSemanasString(1, 27, 5, 2012);
-        Object[][] LlenadoDeCalendario = tabla2.LlenadoDeCalendario(1, 27, 5, 2012);
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                listaHabitacionesTabla,
-                new String[]{
-                    "Numero de Hab."
-                }));
-
-        jScrollPane1.setViewportView(jTable1);
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-                LlenadoDeCalendario,
-                titulos));
-
-        jScrollPane2.setViewportView(jTable2);
-        titulosSelected=titulos;
-        calendarioSelected=LlenadoDeCalendario;
+        
+        iniciarTablaCalendario(jTable1, jTable2, 1, 28, 5, 2012, listaHabitacionesTablaSelected);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String[] titulos = tabla2.diasDeSemanasString(2, 27, 5, 2012);
-        Object[][] LlenadoDeCalendario = tabla2.LlenadoDeCalendario(2, 27, 5, 2012);
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                listaHabitacionesTabla,
-                new String[]{
-                    "Numero de Hab."
-                }));
-
-        jScrollPane1.setViewportView(jTable1);
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-                LlenadoDeCalendario,
-                titulos));
-
-        jScrollPane2.setViewportView(jTable2);
-        titulosSelected=titulos;
-        calendarioSelected=LlenadoDeCalendario;
+        
+        iniciarTablaCalendario(jTable1, jTable2, 2, 28, 5, 2012, listaHabitacionesTablaSelected);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String[] titulos = tabla2.diasDeSemanasString(3, 27, 5, 2012);
-        Object[][] LlenadoDeCalendario = tabla2.LlenadoDeCalendario(3, 27, 5, 2012);
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                listaHabitacionesTabla,
-                new String[]{
-                    "Numero de Hab."
-                }));
-
-        jScrollPane1.setViewportView(jTable1);
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-                LlenadoDeCalendario,
-                titulos));
-
-        jScrollPane2.setViewportView(jTable2);
-        titulosSelected=titulos;
-        calendarioSelected=LlenadoDeCalendario;
+        
+        iniciarTablaCalendario(jTable1, jTable2, 3, 28, 5, 2012, listaHabitacionesTablaSelected);
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        String[] titulos = tabla2.diasDeSemanasString(4, 27, 5, 2012);
-        Object[][] LlenadoDeCalendario = tabla2.LlenadoDeCalendario(4, 27, 5, 2012);
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-                listaHabitacionesTabla,
-                new String[]{
-                    "Numero de Hab."
-                }));
-
-        jScrollPane1.setViewportView(jTable1);
-
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
-                LlenadoDeCalendario,
-                titulos));
-
-        jScrollPane2.setViewportView(jTable2);
-        titulosSelected=titulos;
-        calendarioSelected=LlenadoDeCalendario;
+        
+        iniciarTablaCalendario(jTable1, jTable2, 4, 28, 5, 2012, listaHabitacionesTablaSelected);
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
@@ -320,6 +247,30 @@ public class DashBoard extends javax.swing.JFrame {
             }
         });
     }
+
+    private void iniciarTablaCalendario(JTable jtableCalendario, JTable jtableHabitaciones, int nroSemanas, int dia, 
+            int mes, int anio, Object[][] listaHabitacionesTab) {
+        listaHabitacionesTab= tablaCalendario.listaHabitacionesTab(TablaCalendario.listaHabitacion);
+        String[] titulos = tablaCalendario.diasDeSemanasString(nroSemanas, dia, mes, anio);
+        Object[][] LlenadoDeCalendario = tablaCalendario.LlenadoDeCalendario(nroSemanas, dia, mes, anio);
+        jtableHabitaciones.setModel(new javax.swing.table.DefaultTableModel(
+                listaHabitacionesTab,
+                new String[]{
+                    "Numero de Hab."
+                }));
+
+        jScrollPane1.setViewportView(jtableHabitaciones);
+
+        jtableCalendario.setModel(new javax.swing.table.DefaultTableModel(
+                LlenadoDeCalendario,
+                titulos));
+
+        jScrollPane2.setViewportView(jtableCalendario);
+        titulosSelected = titulos;
+        calendarioSelected = LlenadoDeCalendario;
+        listaHabitacionesTablaSelected=listaHabitacionesTab;
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -338,8 +289,9 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
-    private TablaCalendario tabla2;
-    private static Object[][] listaHabitacionesTabla;
+    private TablaCalendario tablaCalendario;
+    private static Object[][] listaHabitacionesTablaSelected;
     private static String[] titulosSelected;
-    private static Object [][] calendarioSelected;
+    private static Object[][] calendarioSelected;
+    private static Fecha[] fechaSelected;
 }
