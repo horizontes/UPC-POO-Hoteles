@@ -6,10 +6,13 @@ package Calendario;
 
 import Objetos.Fecha;
 import Objetos.Mes;
+import Objetos.Reserva;
 import Objetos.TablaCalendario;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -58,6 +61,7 @@ public class DashBoard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jComboBox1 = new javax.swing.JComboBox();
@@ -72,7 +76,12 @@ public class DashBoard extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable(){
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        }
+        ;
         jRadioButton1 = new javax.swing.JRadioButton();
         jProgressBar1 = new javax.swing.JProgressBar();
         jLabel2 = new javax.swing.JLabel();
@@ -169,6 +178,8 @@ public class DashBoard extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable2.setCellSelectionEnabled(true);
+        jTable2.setComponentPopupMenu(jPopupMenu1);
         jScrollPane2.setViewportView(jTable2);
 
         jScrollPane2.setBounds(70, 110, 950, 510);
@@ -185,6 +196,11 @@ public class DashBoard extends javax.swing.JFrame {
                 "Numero de Hab."
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jScrollPane1.setBounds(10, 110, 60, 510);
@@ -201,10 +217,12 @@ public class DashBoard extends javax.swing.JFrame {
         jProgressBar1.setBounds(70, 99, 950, 10);
         jDesktopPane1.add(jProgressBar1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText(mesStringActual);
         jLabel2.setBounds(70, 80, 110, 14);
         jDesktopPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText(mesStringFinal);
         jLabel3.setBounds(924, 80, 90, 14);
         jDesktopPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -296,6 +314,19 @@ public class DashBoard extends javax.swing.JFrame {
                 jRadioButton1.isSelected());
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        if(evt.getClickCount()==2){
+            int columna = jTable1.columnAtPoint(evt.getPoint());
+            int fila = jTable1.rowAtPoint(evt.getPoint());
+            try{
+            Reserva valueAt = (Reserva)jTable1.getValueAt(fila , columna);
+            JOptionPane.showMessageDialog(this, valueAt.toDetail(),"Detalle de Reserva", 2);
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(this, "No hay reservación","Detalle de Reserva", 1);
+            }
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -340,20 +371,20 @@ public class DashBoard extends javax.swing.JFrame {
 
     private void iniciarTablaCalendario(JTable jtableCalendario, JTable jtableHabitaciones, int nroSemanas, int dia,
             int mes, int anio, Object[][] listaHabitacionesTab, boolean ordernadoPorHabitacion) {
-        Fecha.traductoActivado=true;
+        Fecha.traductoActivado = true;
         Fecha[] titulos2 = tablaCalendario.diasDeSemanasFecha(nroSemanas, dia, mes, anio);
-        String mesInicial="";
-        int conteoMesInicial=0;
-        String mesFinal="";
-        mesInicial=titulos2[0].getMes();
+        String mesInicial = "";
+        int conteoMesInicial = 0;
+        String mesFinal = "";
+        mesInicial = titulos2[0].getMes();
         for (Fecha fecha : titulos2) {
-            if(mesInicial.equals(fecha.getMes())){
+            if (mesInicial.equals(fecha.getMes())) {
                 conteoMesInicial++;
-            }else{
-                mesFinal=fecha.getMes();
+            } else {
+                mesFinal = fecha.getMes();
             }
         }
-        
+
         mesIntInicial = conteoMesInicial;
         jProgressBar1.setMaximum(titulos2.length);
         jLabel2.setText(mesInicial);
@@ -378,21 +409,37 @@ public class DashBoard extends javax.swing.JFrame {
         } else {
             listaHabitacionesTab = tablaCalendario.listaHabitacionesTabOrdenado(TablaCalendario.listaHabitacion);
             Object[][] LlenadoDeCalendario = tablaCalendario.LlenadoDeCalendarioOrdenado(nroSemanas, dia, mes, anio);
-            jtableHabitaciones.setModel(new javax.swing.table.DefaultTableModel(
+            DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(
                     listaHabitacionesTab,
                     new String[]{
                         "Numero de Hab."
-                    }));
+                    }) {
+
+                @Override
+                public boolean isCellEditable(int fila, int columna) {
+                    return false;
+                }
+            };
+
+            jtableHabitaciones.setModel(modelo);
 
             jScrollPane1.setViewportView(jtableHabitaciones);
-
-            jtableCalendario.setModel(new javax.swing.table.DefaultTableModel(
+            DefaultTableModel modelo1 = new javax.swing.table.DefaultTableModel(
                     LlenadoDeCalendario,
-                    titulos2));
+                    titulos2) {
+
+                @Override
+                public boolean isCellEditable(int fila, int columna) {
+                    return false;
+                }
+            };
+            jtableCalendario.setModel(modelo1);
         }
         jScrollPane2.setViewportView(jtableCalendario);
         listaHabitacionesTablaSelected = listaHabitacionesTab;
         fechaSelected = tablaCalendario.fijarFechaActualEnTabla(titulos2);
+     
+        
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -408,6 +455,7 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
