@@ -115,15 +115,4 @@ public class Fecha {
         return new Date(this.anio - 1900, this.mesNumero - 1, this.diaNumero);
     }
     
-    public static void main(String[] args) {
-        Fecha fecha = new Fecha(29, 5, 2012);
-        String [] mesesString = new String[13];
-        fecha = fecha.add(-7, Calendar.MONTH);
-        System.out.println(fecha.toComplet());
-        for (int i = 0; i < mesesString.length; i++) {
-            fecha = fecha.add(1,Calendar.MONTH);
-             mesesString[i] = fecha.toFormatMonth();
-        }
-    }
-    
 }

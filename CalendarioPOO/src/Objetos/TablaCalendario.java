@@ -269,25 +269,5 @@ public class TablaCalendario {
 //        }
 //        return semanas;
 //    }
-    public static void main(String[] args) {
-
-
-
-        TablaCalendario tabla2 = new TablaCalendario();
-        Object[][] listaHabitacionesTab = tabla2.listaHabitacionesTab(listaHabitacion);
-        for (Object[] objects : listaHabitacionesTab) {
-            System.out.println(objects[0]);
-        }
-        listaHabitacionesTab = tabla2.ordenarArrayPorUnaColumna(listaHabitacionesTab);
-        for (Object[] objects : listaHabitacionesTab) {
-            System.out.println(objects[0]);
-        }
-        //        String[] titulos = tabla2.diasDeSemanasString(1, 27, 5, 2012);
-        //        Object[][] LlenadoDeCalendario = tabla2.LlenadoDeCalendario(1, 27, 5, 2012);
-        ////        for (Object[] objects : LlenadoDeCalendario) {
-        ////            for (Object object : objects) {
-        ////                System.out.println(object);
-        ////            }
-        ////        }
-    }
+ 
 }
