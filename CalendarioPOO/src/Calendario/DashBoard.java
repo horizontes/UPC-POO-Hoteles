@@ -49,6 +49,7 @@ public class DashBoard extends javax.swing.JFrame {
         Mes[] mesesComboBox = tablaCalendario.mesesComboBox(fecha);
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(mesesComboBox));
         jComboBox1.setSelectedIndex(6);
+        jComboBox2.setSelectedIndex(0);
 
     }
 
@@ -86,6 +87,7 @@ public class DashBoard extends javax.swing.JFrame {
         jProgressBar1 = new javax.swing.JProgressBar();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -178,8 +180,7 @@ public class DashBoard extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable2.setCellSelectionEnabled(true);
-        jTable2.setComponentPopupMenu(jPopupMenu1);
+        jTable2.setRowSelectionAllowed(false);
         jScrollPane2.setViewportView(jTable2);
 
         jScrollPane2.setBounds(70, 110, 950, 510);
@@ -227,6 +228,10 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel3.setBounds(924, 80, 90, 14);
         jDesktopPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mes", "Dia" }));
+        jComboBox2.setBounds(820, 40, 80, 20);
+        jDesktopPane1.add(jComboBox2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         jTabbedPane1.addTab("DASHBOARD", jDesktopPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -271,7 +276,7 @@ public class DashBoard extends javax.swing.JFrame {
                 fechaSelected.getMesNumero(), fechaSelected.getAnio(), listaHabitacionesTablaSelected,
                 jRadioButton1.isSelected());
         vistaSemanasSelected = 2;
-
+    
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -283,7 +288,7 @@ public class DashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
+        
         iniciarTablaCalendario(jTable1, jTable2, 4, fechaSelected.getDiaNumero(),
                 fechaSelected.getMesNumero(), fechaSelected.getAnio(), listaHabitacionesTablaSelected,
                 jRadioButton1.isSelected());
@@ -291,7 +296,11 @@ public class DashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        fechaSelected = fechaSelected.add(-1, Calendar.DATE);
+        int avance=Calendar.MONTH;
+        if(jComboBox2.getSelectedIndex()==1){
+            avance = Calendar.DATE;
+        }
+        fechaSelected = fechaSelected.add(-1, avance);
         iniciarTablaCalendario(jTable1, jTable2, vistaSemanasSelected, fechaSelected.getDiaNumero(),
                 fechaSelected.getMesNumero(), fechaSelected.getAnio(), listaHabitacionesTablaSelected,
                 jRadioButton1.isSelected());
@@ -302,7 +311,11 @@ public class DashBoard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        fechaSelected = fechaSelected.add(1, Calendar.DATE);
+        int avance=Calendar.MONTH;
+        if(jComboBox2.getSelectedIndex()==1){
+            avance = Calendar.DATE;
+        }
+        fechaSelected = fechaSelected.add(1, avance);
         iniciarTablaCalendario(jTable1, jTable2, vistaSemanasSelected, fechaSelected.getDiaNumero(),
                 fechaSelected.getMesNumero(), fechaSelected.getAnio(), listaHabitacionesTablaSelected,
                 jRadioButton1.isSelected());
@@ -451,6 +464,7 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

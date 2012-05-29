@@ -203,10 +203,7 @@
                         <Column editable="true" title="Title 4" type="java.lang.Object"/>
                       </Table>
                     </Property>
-                    <Property name="cellSelectionEnabled" type="boolean" value="true"/>
-                    <Property name="componentPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                      <ComponentRef name="jPopupMenu1"/>
-                    </Property>
+                    <Property name="rowSelectionAllowed" type="boolean" value="false"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -287,6 +284,18 @@
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
                   <JLayeredPaneConstraints x="924" y="80" width="90" height="-1" layer="0" position="-1"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="jComboBox2">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;Mes&quot;, &quot;Dia&quot; })" type="code"/>
+                </Property>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
+                  <JLayeredPaneConstraints x="820" y="40" width="80" height="-1" layer="0" position="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
