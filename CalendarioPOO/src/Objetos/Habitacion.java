@@ -6,6 +6,7 @@ public class Habitacion {
     private String denominacion;
     private TipoHabitacion tipoHabitacion;
 
+    
     Habitacion(int numHabitacion) {
         this.numHabitacion = numHabitacion;
     }

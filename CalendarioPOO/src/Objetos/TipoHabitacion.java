@@ -7,7 +7,15 @@ package Objetos;
 public class TipoHabitacion {
     
     private String tipo;
+    private double precio;
 
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
     
     public TipoHabitacion(String tipo){
         this.tipo = tipo;

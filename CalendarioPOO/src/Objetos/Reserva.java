@@ -1,8 +1,6 @@
 
 package Objetos;
 
-import java.util.Date;
-
 
 public class Reserva {
     
