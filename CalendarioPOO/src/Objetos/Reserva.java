@@ -1,6 +1,8 @@
 
 package Objetos;
 
+import java.util.Date;
+
 
 public class Reserva {
     
@@ -11,6 +13,7 @@ public class Reserva {
     private int dia;
     private int mes;
     private int anio;
+    private EstadoReserva estado;
     //private Fecha fecha;
     
     public Reserva(){
@@ -23,6 +26,18 @@ public class Reserva {
         this.mes=mes;
         this.anio=anio;
         this.idReserva=id;
+        id++;
+    }
+    
+    public Reserva(Cliente cliente, Habitacion habitacion, int dia, int mes, int anio,
+            String estadoReserva){
+        this.cliente=cliente;
+        this.habitacion=habitacion;
+        this.dia=dia;
+        this.mes=mes;
+        this.anio=anio;
+        this.idReserva=id;
+        this.estado = new EstadoReserva(estadoReserva);
         id++;
     }
 
@@ -79,7 +94,20 @@ public class Reserva {
     }
     
     public String toDetail(){
-        return this.cliente +"\n" + this.habitacion + " - " + this.habitacion.getTipoHabitacion() + "\n" + this.dia+"/"+this.mes+"/"+this.anio;
+        return "El Hotel 'TU CASA' te da la bienvenida\n\n\n"+
+                "Detalle de factura\n\n"+
+                "Fecha de emsión:\t\t\t" + new Fecha(new Date()).toComplet()+
+                "\nId de Reserva:\t\t\t" + this.idReserva +
+                "\nNombre de Cliente:\t\t\t" + this.getCliente().toString() +
+                "\nNumero de Habitacion:\t\t\t" + this.getHabitacion().getNumHabitacion() +
+                "\nTipo de Habitacion:\t\t\t" + this.getHabitacion().getTipoHabitacion().toString() +
+                "\nPrecio por Dia:\t\t\t" + this.getHabitacion().getTipoHabitacion().getPrecio() +
+                "\nDescuento:\t\t\t" + "0.00" +
+                "\nFecha de Reserva:\t\t\t" + this.dia+"/"+this.mes+"/"+this.anio +
+                "\nUsuario del sistema:\t\t\t" + "Cgarrido" + 
+                "\nEstado de la reserva:\t\t\t" + this.estado +
+                "\n\n\nVisitenos nuevamente.";
+               
     }
     
     

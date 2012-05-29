@@ -9,6 +9,10 @@ public class TipoHabitacion {
     private String tipo;
     private double precio;
 
+    TipoHabitacion(String normaL, double precio) {
+        this.precio = precio;
+    }
+
     public double getPrecio() {
         return precio;
     }

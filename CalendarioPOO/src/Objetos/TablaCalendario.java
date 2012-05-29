@@ -24,20 +24,20 @@ public class TablaCalendario {
         Cliente cliente10 = new Cliente("Alejandro", "Magno");
 
         listaReserva = new ArrayList<Reserva>();
-        listaReserva.add(new Reserva(cliente1, listaHabitacion.get(1), 28, 5, 2012));
-        listaReserva.add(new Reserva(cliente2, listaHabitacion.get(2), 28, 5, 2012));
-        listaReserva.add(new Reserva(cliente3, listaHabitacion.get(4), 28, 5, 2012));
-        listaReserva.add(new Reserva(cliente4, listaHabitacion.get(5), 28, 5, 2012));
-        listaReserva.add(new Reserva(cliente5, listaHabitacion.get(9), 28, 5, 2012));
-        listaReserva.add(new Reserva(cliente5, listaHabitacion.get(10), 28, 5, 2012));
-        listaReserva.add(new Reserva(cliente6, listaHabitacion.get(11), 28, 5, 2012));
-        listaReserva.add(new Reserva(cliente7, listaHabitacion.get(12), 28, 5, 2012));
-        listaReserva.add(new Reserva(cliente8, listaHabitacion.get(21), 28, 5, 2012));
-        listaReserva.add(new Reserva(cliente9, listaHabitacion.get(22), 28, 5, 2012));
-        listaReserva.add(new Reserva(cliente10, listaHabitacion.get(23), 28, 5, 2012));
-        listaReserva.add(new Reserva(cliente10, listaHabitacion.get(24), 28, 5, 2012));
-        listaReserva.add(new Reserva(cliente10, listaHabitacion.get(24), 20, 6, 2012));
-        listaReserva.add(new Reserva(cliente10, listaHabitacion.get(23), 20, 6, 2012));
+        listaReserva.add(new Reserva(cliente1, listaHabitacion.get(1), 28, 5, 2012, "CONFIRMADA"));
+        listaReserva.add(new Reserva(cliente2, listaHabitacion.get(2), 28, 5, 2012, "RESERVADA"));
+        listaReserva.add(new Reserva(cliente3, listaHabitacion.get(4), 28, 5, 2012, "CHECK IN"));
+        listaReserva.add(new Reserva(cliente4, listaHabitacion.get(5), 28, 5, 2012, "CHECK IN"));
+        listaReserva.add(new Reserva(cliente5, listaHabitacion.get(9), 28, 5, 2012, "CHECK IN"));
+        listaReserva.add(new Reserva(cliente5, listaHabitacion.get(10), 28, 5, 2012, "CONFIRMADA"));
+        listaReserva.add(new Reserva(cliente6, listaHabitacion.get(11), 28, 5, 2012, "CONFIRMADA"));
+        listaReserva.add(new Reserva(cliente7, listaHabitacion.get(12), 28, 5, 2012, "CONFIRMADA"));
+        listaReserva.add(new Reserva(cliente8, listaHabitacion.get(21), 28, 5, 2012, "CONFIRMADA"));
+        listaReserva.add(new Reserva(cliente9, listaHabitacion.get(22), 28, 5, 2012, "CONFIRMADA"));
+        listaReserva.add(new Reserva(cliente10, listaHabitacion.get(23), 28, 5, 2012, "RESERVADA"));
+        listaReserva.add(new Reserva(cliente10, listaHabitacion.get(24), 28, 5, 2012, "RESERVADA"));
+        listaReserva.add(new Reserva(cliente10, listaHabitacion.get(24), 20, 6, 2012, "RESERVADA"));
+        listaReserva.add(new Reserva(cliente10, listaHabitacion.get(23), 20, 6, 2012, "RESERVADA"));
         return this.listaReserva;
     }
 
@@ -49,17 +49,17 @@ public class TablaCalendario {
         int c = 0;
         while (i < 30) {
             if (i < 10) {
-                TipoHabitacion tipoHabitacion = new TipoHabitacion("NORMAL");
+                TipoHabitacion tipoHabitacion = new TipoHabitacion("NORMAL", 50.00);
                 Habitacion habitacion = new Habitacion(301 + a, tipoHabitacion);
                 listaHabitacion.add(habitacion);
                 a++;
             } else if (i < 20) {
-                TipoHabitacion tipoHabitacion = new TipoHabitacion("DOBLE");
+                TipoHabitacion tipoHabitacion = new TipoHabitacion("DOBLE", 100.00);
                 Habitacion habitacion = new Habitacion(201 + b, tipoHabitacion);
                 listaHabitacion.add(habitacion);
                 b++;
             } else {
-                TipoHabitacion tipoHabitacion = new TipoHabitacion("PRESIDENCIAL");
+                TipoHabitacion tipoHabitacion = new TipoHabitacion("PRESIDENCIAL", 200.00);
                 Habitacion habitacion = new Habitacion(101 + c, tipoHabitacion);
                 listaHabitacion.add(habitacion);
                 c++;
