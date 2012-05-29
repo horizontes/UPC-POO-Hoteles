@@ -74,6 +74,9 @@ public class DashBoard extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jRadioButton1 = new javax.swing.JRadioButton();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -168,7 +171,7 @@ public class DashBoard extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        jScrollPane2.setBounds(70, 90, 950, 510);
+        jScrollPane2.setBounds(70, 110, 950, 510);
         jDesktopPane1.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -184,7 +187,7 @@ public class DashBoard extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jScrollPane1.setBounds(10, 90, 60, 510);
+        jScrollPane1.setBounds(10, 110, 60, 510);
         jDesktopPane1.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jRadioButton1.setText("Ordenar habitacion por Tipo");
@@ -195,6 +198,16 @@ public class DashBoard extends javax.swing.JFrame {
         });
         jRadioButton1.setBounds(20, 50, 170, 23);
         jDesktopPane1.add(jRadioButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jProgressBar1.setBounds(70, 99, 950, 10);
+        jDesktopPane1.add(jProgressBar1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel2.setText(mesStringActual);
+        jLabel2.setBounds(70, 80, 110, 14);
+        jDesktopPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        jLabel3.setText(mesStringFinal);
+        jLabel3.setBounds(924, 80, 90, 14);
+        jDesktopPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTabbedPane1.addTab("DASHBOARD", jDesktopPane1);
 
@@ -206,7 +219,7 @@ public class DashBoard extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
         );
 
         pack();
@@ -327,7 +340,25 @@ public class DashBoard extends javax.swing.JFrame {
 
     private void iniciarTablaCalendario(JTable jtableCalendario, JTable jtableHabitaciones, int nroSemanas, int dia,
             int mes, int anio, Object[][] listaHabitacionesTab, boolean ordernadoPorHabitacion) {
+        Fecha.traductoActivado=true;
         Fecha[] titulos2 = tablaCalendario.diasDeSemanasFecha(nroSemanas, dia, mes, anio);
+        String mesInicial="";
+        int conteoMesInicial=0;
+        String mesFinal="";
+        mesInicial=titulos2[0].getMes();
+        for (Fecha fecha : titulos2) {
+            if(mesInicial.equals(fecha.getMes())){
+                conteoMesInicial++;
+            }else{
+                mesFinal=fecha.getMes();
+            }
+        }
+        
+        mesIntInicial = conteoMesInicial;
+        jProgressBar1.setMaximum(titulos2.length);
+        jLabel2.setText(mesInicial);
+        jLabel3.setText(mesFinal);
+        jProgressBar1.setValue(mesIntInicial);
         if (!ordernadoPorHabitacion) {
             listaHabitacionesTab = tablaCalendario.listaHabitacionesTab(TablaCalendario.listaHabitacion);
             //String[] titulos = tablaCalendario.diasDeSemanasString(nroSemanas, dia, mes, anio);
@@ -375,6 +406,9 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -388,4 +422,7 @@ public class DashBoard extends javax.swing.JFrame {
     private static int vistaSemanasSelected = 1;
     private static int mesActual;
     private static int mesAnterior;
+    private static String mesStringActual;
+    private static String mesStringFinal;
+    private int mesIntInicial;
 }
