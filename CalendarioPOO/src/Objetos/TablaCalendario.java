@@ -10,8 +10,8 @@ public class TablaCalendario {
 
     public TablaCalendario() {
     }
-    
-    public List<Reserva> llenadoReservas(){
+
+    public List<Reserva> llenadoReservas() {
         Cliente cliente1 = new Cliente("Jorge", "Chavez");
         Cliente cliente2 = new Cliente("Miguel", "Grau");
         Cliente cliente3 = new Cliente("Francisco", "Bolognesi");
@@ -40,7 +40,7 @@ public class TablaCalendario {
         listaReserva.add(new Reserva(cliente10, listaHabitacion.get(23), 20, 6, 2012));
         return this.listaReserva;
     }
-    
+
     public static List<Habitacion> llenadoHabitaciones() {
         listaHabitacion = new ArrayList<Habitacion>();
         int i = 0;
@@ -76,7 +76,7 @@ public class TablaCalendario {
         }
         return guia;
     }
-    
+
     public Object[][] listaHabitacionesCom(List<Habitacion> listaHabitacion) {
         Object[][] guia = new Object[1][listaHabitacion.size()];
         for (int i = 0; i < listaHabitacion.size(); i++) {
@@ -108,6 +108,7 @@ public class TablaCalendario {
         }
         return dadosFinal;
     }
+
     public Object[][] ordenarDosArray(Object[][] calendarioHabitaciones, Object[][] calendarioTabla) {
 
         Object[] guia = new Object[calendarioHabitaciones[0].length];
@@ -133,17 +134,17 @@ public class TablaCalendario {
         Object[] guia = new Object[30];
         System.arraycopy(listaHabitacionesTabla[0], 0, guia, 0, guia.length);
         Fecha[] diasDeSemanasFecha = diasDeSemanasFecha(nroSemanas, dia, mes, anio);
-        
-        Object[][] tablaCompleta = new Object[guia.length][diasDeSemanasFecha.length] ;
-        
+
+        Object[][] tablaCompleta = new Object[guia.length][diasDeSemanasFecha.length];
+
         for (int i = 0; i < guia.length; i++) {
             for (int j = 0; j < diasDeSemanasFecha.length; j++) {
                 for (Reserva reserva : listaReserva) {
-                if(((Habitacion)guia[i]).getNumHabitacion()==reserva.getHabitacion().getNumHabitacion()){
-                    if(diasDeSemanasFecha[j].toDate().equals(reserva.getFecha().toDate())){
-                        tablaCompleta[i][j]=reserva;
+                    if (((Habitacion) guia[i]).getNumHabitacion() == reserva.getHabitacion().getNumHabitacion()) {
+                        if (diasDeSemanasFecha[j].toDate().equals(reserva.getFecha().toDate())) {
+                            tablaCompleta[i][j] = reserva;
+                        }
                     }
-                }
                 }
             }
         }
@@ -167,28 +168,33 @@ public class TablaCalendario {
         return semanas;
     }
     
-    public String[] diasDeSemanasString(int nroSemanas, int dia, int mes, int anio) {
-        int nroDias = nroSemanas * 7;
-        String[] semanas = new String[nroDias];
-        Date date = new Date(anio - 1900, mes - 1, dia);
-        Calendar hoy = Calendar.getInstance();
-        hoy.setTime(date);
-        int i = 0;
-        semanas[0] = new Fecha(hoy.getTime()).toFormatCal();
-        i++;
-        while (i < nroDias) {
-            hoy.add(Calendar.DATE, 1);
-            semanas[i] = new Fecha(hoy.getTime()).toFormatCal();
-            i++;
-        }
-        return semanas;
+    public Fecha fijarFechaActualEnTabla(Fecha[] diasDeSemanasFecha){
+        Fecha fecha;
+        fecha = diasDeSemanasFecha[0];
+        System.out.println(fecha);
+        return fecha;
     }
 
+//    public String[] diasDeSemanasString(int nroSemanas, int dia, int mes, int anio) {
+//        int nroDias = nroSemanas * 7;
+//        String[] semanas = new String[nroDias];
+//        Date date = new Date(anio - 1900, mes - 1, dia);
+//        Calendar hoy = Calendar.getInstance();
+//        hoy.setTime(date);
+//        int i = 0;
+//        semanas[0] = new Fecha(hoy.getTime()).toFormatCal();
+//        i++;
+//        while (i < nroDias) {
+//            hoy.add(Calendar.DATE, 1);
+//            semanas[i] = new Fecha(hoy.getTime()).toFormatCal();
+//            i++;
+//        }
+//        return semanas;
+//    }
+
     public static void main(String[] args) {
-        Object[][] listaHabitacionesTabla = new TablaCalendario().listaHabitacionesCom(listaHabitacion);
-        for (Object objects : listaHabitacionesTabla[0]) {
-            System.out.println(objects);
-        }
+        
+      
         //        TablaCalendario tabla2 = new TablaCalendario();
         //        String[] titulos = tabla2.diasDeSemanasString(1, 27, 5, 2012);
         //        Object[][] LlenadoDeCalendario = tabla2.LlenadoDeCalendario(1, 27, 5, 2012);
