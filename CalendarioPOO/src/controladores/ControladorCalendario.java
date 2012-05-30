@@ -1,14 +1,20 @@
-package Objetos;
+package controladores;
 
+import Objetos.Cliente;
+import Objetos.Fecha;
+import Objetos.Habitacion;
+import Objetos.Mes;
+import Objetos.Reserva;
+import Objetos.TipoHabitacion;
 import java.util.*;
 
-public class TablaCalendario {
+public class ControladorCalendario {
 
     private List<Reserva> listaReserva = llenadoReservas();
     public static List<Habitacion> listaHabitacion = llenadoHabitaciones();
     private Object[][] tabla;
 
-    public TablaCalendario() {
+    public ControladorCalendario() {
     }
 
     public List<Reserva> llenadoReservas() {

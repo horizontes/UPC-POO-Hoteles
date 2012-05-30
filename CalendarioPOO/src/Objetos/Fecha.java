@@ -4,7 +4,7 @@
  */
 package Objetos;
 
-import Calendario.Traductor;
+import controladores.Traductor;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;

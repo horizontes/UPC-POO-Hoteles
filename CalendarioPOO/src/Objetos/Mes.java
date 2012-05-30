@@ -4,7 +4,7 @@
  */
 package Objetos;
 
-import Calendario.Traductor;
+import controladores.Traductor;
 import java.util.Date;
 
 public class Mes {

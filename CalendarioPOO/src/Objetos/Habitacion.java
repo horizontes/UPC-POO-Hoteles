@@ -7,11 +7,11 @@ public class Habitacion {
     private TipoHabitacion tipoHabitacion;
 
     
-    Habitacion(int numHabitacion) {
+    public Habitacion(int numHabitacion) {
         this.numHabitacion = numHabitacion;
     }
 
-    Habitacion(int numHabitacion, TipoHabitacion tipoHabitacion) {
+    public Habitacion(int numHabitacion, TipoHabitacion tipoHabitacion) {
         this.numHabitacion = numHabitacion;
         this.tipoHabitacion = tipoHabitacion;
     }

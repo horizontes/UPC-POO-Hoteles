@@ -8,7 +8,7 @@ public class EstadoReserva {
     
     public String estado;
 
-    EstadoReserva(String estadoReserva) {
+    public EstadoReserva(String estadoReserva) {
         this.estado=estadoReserva;
     }
 

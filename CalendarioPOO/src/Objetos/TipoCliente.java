@@ -7,7 +7,7 @@ public class TipoCliente {
     
     private String tipoCliente;
 
-    TipoCliente(String tipoCliente) {
+    public TipoCliente(String tipoCliente) {
         this.tipoCliente=tipoCliente;
     }
     

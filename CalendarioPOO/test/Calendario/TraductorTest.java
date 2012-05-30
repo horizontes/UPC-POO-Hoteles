@@ -4,6 +4,7 @@
  */
 package Calendario;
 
+import controladores.Traductor;
 import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;

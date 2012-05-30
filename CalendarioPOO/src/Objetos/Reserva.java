@@ -16,9 +16,6 @@ public class Reserva {
     private EstadoReserva estado;
     //private Fecha fecha;
     
-    public Reserva(){
-    }
-    
     public Reserva(Cliente cliente, Habitacion habitacion, int dia, int mes, int anio){
         this.cliente=cliente;
         this.habitacion=habitacion;

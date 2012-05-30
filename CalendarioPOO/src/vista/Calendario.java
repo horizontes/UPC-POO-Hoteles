@@ -2,12 +2,12 @@
  * To change this template, choose Tools | Templates and open the template in
  * the editor.
  */
-package Calendario;
+package vista;
 
 import Objetos.Fecha;
 import Objetos.Mes;
 import Objetos.Reserva;
-import Objetos.TablaCalendario;
+import controladores.ControladorCalendario;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -18,12 +18,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Pc
  */
-public class DashBoard extends javax.swing.JFrame {
+public class Calendario extends javax.swing.JFrame {
 
     /**
      * Creates new form DashBoard
      */
-    public DashBoard() {
+    public Calendario() {
         initComponents();
         iniciarCalendario();
         iniciarComboBoxMeses();
@@ -35,7 +35,7 @@ public class DashBoard extends javax.swing.JFrame {
         int dia = date.getDate() - 1;
         int mes = date.getMonth() + 1;
         int anio = date.getYear() + 1900;
-        tablaCalendario = new TablaCalendario();
+        tablaCalendario = new ControladorCalendario();
         //Fechas en español
         Fecha.traductoActivado = true;
         //Llenado de columna de la tabla calendario
@@ -361,13 +361,13 @@ public class DashBoard extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DashBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Calendario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DashBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Calendario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DashBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Calendario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DashBoard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Calendario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -377,7 +377,7 @@ public class DashBoard extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new DashBoard().setVisible(true);
+                new Calendario().setVisible(true);
             }
         });
     }
@@ -404,7 +404,7 @@ public class DashBoard extends javax.swing.JFrame {
         jLabel3.setText(mesFinal);
         jProgressBar1.setValue(mesIntInicial);
         if (!ordernadoPorHabitacion) {
-            listaHabitacionesTab = tablaCalendario.listaHabitacionesTab(TablaCalendario.listaHabitacion);
+            listaHabitacionesTab = tablaCalendario.listaHabitacionesTab(ControladorCalendario.listaHabitacion);
             //String[] titulos = tablaCalendario.diasDeSemanasString(nroSemanas, dia, mes, anio);
 
             Object[][] LlenadoDeCalendario = tablaCalendario.LlenadoDeCalendario(nroSemanas, dia, mes, anio);
@@ -420,7 +420,7 @@ public class DashBoard extends javax.swing.JFrame {
                     LlenadoDeCalendario,
                     titulos2));
         } else {
-            listaHabitacionesTab = tablaCalendario.listaHabitacionesTabOrdenado(TablaCalendario.listaHabitacion);
+            listaHabitacionesTab = tablaCalendario.listaHabitacionesTabOrdenado(ControladorCalendario.listaHabitacion);
             Object[][] LlenadoDeCalendario = tablaCalendario.LlenadoDeCalendarioOrdenado(nroSemanas, dia, mes, anio);
             DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(
                     listaHabitacionesTab,
@@ -478,7 +478,7 @@ public class DashBoard extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
-    private TablaCalendario tablaCalendario;
+    private ControladorCalendario tablaCalendario;
     private static Object[][] listaHabitacionesTablaSelected;
     private static Fecha fechaSelected;
     private static int vistaSemanasSelected = 1;
