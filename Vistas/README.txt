@@ -1,1 +1,1 @@
-"Linea de programacion en vistas" 
+"Linea de programacion en Modelos y Controladores" 
