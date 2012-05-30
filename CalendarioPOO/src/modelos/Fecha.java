@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates and open the template in
  * the editor.
  */
-package Objetos;
+package modelos;
 
 import controladores.Traductor;
 import java.text.SimpleDateFormat;

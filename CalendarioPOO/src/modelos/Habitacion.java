@@ -1,4 +1,4 @@
-package Objetos;
+package modelos;
 
 public class Habitacion {
 

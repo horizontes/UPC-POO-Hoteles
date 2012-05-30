@@ -4,6 +4,7 @@
  */
 package Objetos;
 
+import modelos.TipoPasajero;
 import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;

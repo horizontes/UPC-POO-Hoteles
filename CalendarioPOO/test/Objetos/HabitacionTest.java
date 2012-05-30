@@ -4,6 +4,8 @@
  */
 package Objetos;
 
+import modelos.Habitacion;
+import modelos.TipoHabitacion;
 import org.junit.*;
 import static org.junit.Assert.*;
 

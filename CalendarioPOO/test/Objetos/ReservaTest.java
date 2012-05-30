@@ -4,6 +4,10 @@
  */
 package Objetos;
 
+import modelos.Reserva;
+import modelos.Pasajero;
+import modelos.Habitacion;
+import modelos.TipoHabitacion;
 import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
