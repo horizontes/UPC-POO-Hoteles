@@ -1,19 +1,19 @@
 package modelos;
 
 import controladores.ControlesGenerales;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-public class Habitacion {
+public class Habitacion implements InterfaceGeneral {
 
     private int numHabitacion;
     private String denominacion;
     private TipoHabitacion tipoHabitacion;
+    public boolean errorObject;
+    public boolean errorInt;
 
     public Habitacion(int numHabitacion) {
 
-        if (ControlesGenerales.validarNumerosValidos(numHabitacion)) {
+        if (validarNumerosValidos(numHabitacion)) {
             this.numHabitacion = numHabitacion;
         } else {
             JOptionPane.showMessageDialog(null, "Valor invalido en: " + numHabitacion + ">>>" + getClass());
@@ -22,7 +22,7 @@ public class Habitacion {
     }
 
     public Habitacion(int numHabitacion, TipoHabitacion tipoHabitacion) {
-        if (ControlesGenerales.validarNumerosValidos(numHabitacion) && ControlesGenerales.validarNulos(tipoHabitacion)) {
+        if (validarNumerosValidos(numHabitacion) && ControlesGenerales.validarNulos(tipoHabitacion)) {
             this.numHabitacion = numHabitacion;
             this.tipoHabitacion = tipoHabitacion;
         } else {
@@ -56,5 +56,44 @@ public class Habitacion {
 
     public String toString() {
         return String.valueOf(this.numHabitacion);
+    }
+    
+    @Override
+    public boolean validarNulos(Object campo) {
+        if (campo != null) {
+            return true;
+        } else {
+            errorObject = true;
+            return false;
+        }
+    }
+
+    @Override
+    public boolean validarIgualesObject(Object variable1, Object variable2) {
+        if (variable1.equals(variable2)) {
+            return true;
+        } else {
+            errorObject = true;
+            return false;
+        }
+    }
+
+    @Override
+    public boolean validarNumerosValidos(int numero) {
+        if (numero <= 0) {
+            errorInt = true;
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean isErrorInt() {
+        return this.errorInt;
+    }
+
+    @Override
+    public boolean isErrorObject() {
+        return this.errorObject;
     }
 }

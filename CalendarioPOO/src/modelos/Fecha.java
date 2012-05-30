@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.Locale;
 import javax.swing.JOptionPane;
 
-public class Fecha {
+public final class Fecha implements InterfaceGeneral {
 
     private String dia;
     private int diaNumero;
@@ -19,10 +19,12 @@ public class Fecha {
     private int mesNumero;
     private int anio;
     public static boolean traductoActivado;
+    private boolean errorInt;
+    private boolean errorObject;
 
     public Fecha(int diaNumero, int mesNumero, int anio) {
 
-        if (ControlesGenerales.validarNulos(diaNumero*mesNumero*anio)) {
+        if (validarNulos(diaNumero * mesNumero * anio)) {
             this.diaNumero = diaNumero;
             this.mesNumero = mesNumero;
             this.anio = anio;
@@ -33,7 +35,7 @@ public class Fecha {
     }
 
     public Fecha(Date date) {
-        if (ControlesGenerales.validarNulos(date)) {
+        if (validarNulos(date)) {
             this.diaNumero = date.getDate();
             this.mesNumero = date.getMonth() + 1;
             this.anio = anio = date.getYear() + 1900;
@@ -42,6 +44,16 @@ public class Fecha {
             JOptionPane.showMessageDialog(null, "Valor nulo en: " + getClass());
         }
 
+    }
+
+    @Override
+    public boolean isErrorInt() {
+        return errorInt;
+    }
+
+    @Override
+    public boolean isErrorObject() {
+        return errorObject;
     }
 
     public int getAnio() {
@@ -126,10 +138,32 @@ public class Fecha {
         return new Date(this.anio - 1900, this.mesNumero - 1, this.diaNumero);
     }
 
-    public static void main(String[] args) {
-        Fecha fecha = new Fecha(null);
-        System.out.println(fecha);
+    @Override
+    public boolean validarNulos(Object campo) {
+        if (campo != null) {
+            return true;
+        } else {
+            errorObject = true;
+            return false;
+        }
+    }
 
+    @Override
+    public boolean validarIgualesObject(Object variable1, Object variable2) {
+        if (variable1.equals(variable2)) {
+            return true;
+        } else {
+            errorObject = true;
+            return false;
+        }
+    }
+
+    @Override
+    public boolean validarNumerosValidos(int numero) {
+        if (numero <= 0) {
+            errorInt = true;
+            return false;
+        }
+        return true;
     }
 }
-

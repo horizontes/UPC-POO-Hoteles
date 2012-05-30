@@ -1,12 +1,11 @@
 
 package modelos;
 
-import controladores.ControlesGenerales;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
 
-public class Reserva {
+public class Reserva implements InterfaceGeneral{
     
     private static int id=1;
     private int idReserva;
@@ -16,12 +15,14 @@ public class Reserva {
     private int mes;
     private int anio;
     private EstadoReserva estado;
+    public boolean errorObject;
+    public boolean errorInt;
     //private Fecha fecha;
     
     public Reserva(Pasajero pasajero, Habitacion habitacion, int dia, int mes, int anio){
         
-        if(ControlesGenerales.validarNulos(pasajero)&&ControlesGenerales.validarNulos(habitacion)&&
-                ControlesGenerales.validarNumerosValidos(dia*mes*anio)){
+        if(validarNulos(pasajero)&&validarNulos(habitacion)&&
+                validarNumerosValidos(dia*mes*anio)){
         
         this.pasajero=pasajero;
         this.habitacion=habitacion;
@@ -37,8 +38,8 @@ public class Reserva {
     
     public Reserva(Pasajero pasajero, Habitacion habitacion, int dia, int mes, int anio,
             String estadoReserva){
-        if(ControlesGenerales.validarNulos(pasajero)&&ControlesGenerales.validarNulos(habitacion)&&
-                ControlesGenerales.validarNumerosValidos(dia*mes*anio)&&ControlesGenerales.validarNulos(estadoReserva)){
+        if(validarNulos(pasajero)&&validarNulos(habitacion)&&
+                validarNumerosValidos(dia*mes*anio)&&validarNulos(estadoReserva)){
         this.pasajero=pasajero;
         this.habitacion=habitacion;
         this.dia=dia;
@@ -123,5 +124,43 @@ public class Reserva {
                
     }
     
+    @Override
+    public boolean isErrorInt() {
+        return this.errorInt;
+    }
+
+    @Override
+    public boolean isErrorObject() {
+        return this.errorObject;
+    }
+    
+    @Override
+    public boolean validarNulos(Object campo) {
+        if (campo != null) {
+            return true;
+        } else {
+            errorObject = true;
+            return false;
+        }
+    }
+
+    @Override
+    public boolean validarIgualesObject(Object variable1, Object variable2) {
+        if (variable1.equals(variable2)) {
+            return true;
+        } else {
+            errorObject = true;
+            return false;
+        }
+    }
+
+    @Override
+    public boolean validarNumerosValidos(int numero) {
+        if (numero <= 0) {
+            errorInt = true;
+            return false;
+        }
+        return true;
+    }
     
 }

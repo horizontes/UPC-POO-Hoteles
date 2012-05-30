@@ -8,8 +8,8 @@ import modelos.TipoHabitacion;
 public class ControlesGenerales {
 
     private static List<String[]> palabras = new ArrayList<String[]>();
-    public static boolean errorObject=false;
-    private static boolean errorInt=false;
+    public boolean errorObject=false;
+    public boolean errorInt=false;
     
 
     public static void llenadoPalabras() {
@@ -80,7 +80,7 @@ public class ControlesGenerales {
         if (campo != null) {
             return true;
         } else {
-            errorObject=true;
+            new ControlesGenerales().errorObject=true;
             return false;
         }
     }
@@ -89,14 +89,14 @@ public class ControlesGenerales {
         if (variable1.equals(variable2)) {
             return true;
         } else {
-            errorObject=true;
+            new ControlesGenerales().errorObject=true;
             return false;
         }
     }
     
     public static boolean validarNumerosValidos(int numero){
         if(numero<=0){
-            errorInt=true;
+             new ControlesGenerales().errorInt=true;
             return false;
         }
         return true;
