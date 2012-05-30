@@ -2,13 +2,18 @@ package controladores;
 
 import java.util.ArrayList;
 import java.util.List;
+import modelos.Habitacion;
+import modelos.TipoHabitacion;
 
-public class Traductor {
+public class ControlesGenerales {
 
     private static List<String[]> palabras = new ArrayList<String[]>();
+    public static boolean errorObject=false;
+    private static boolean errorInt=false;
+    
 
     public static void llenadoPalabras() {
-        
+
         String[] idem = {"January", "Enero"};
         palabras.add(idem);
         String[] idem1 = {"February", "Febrero"};
@@ -54,7 +59,7 @@ public class Traductor {
         if (palabras.isEmpty()) {
             llenadoPalabras();
         }
-        for (int i = 0; i < Traductor.palabras.size(); i++) {
+        for (int i = 0; i < ControlesGenerales.palabras.size(); i++) {
             if (palabras.get(i)[0].equals(palabra) && activado) {
                 palabraSp = palabras.get(i)[1];
                 break;
@@ -70,4 +75,31 @@ public class Traductor {
         String idem[] = {en, sp};
         palabras.add(idem);
     }
+
+    public static boolean validarNulos(Object campo) {
+        if (campo != null) {
+            return true;
+        } else {
+            errorObject=true;
+            return false;
+        }
+    }
+
+    public static boolean validarIgualesObject(Object variable1, Object variable2) {
+        if (variable1.equals(variable2)) {
+            return true;
+        } else {
+            errorObject=true;
+            return false;
+        }
+    }
+    
+    public static boolean validarNumerosValidos(int numero){
+        if(numero<=0){
+            errorInt=true;
+            return false;
+        }
+        return true;
+    }
+
 }

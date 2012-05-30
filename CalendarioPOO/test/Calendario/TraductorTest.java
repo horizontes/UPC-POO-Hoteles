@@ -4,7 +4,7 @@
  */
 package Calendario;
 
-import controladores.Traductor;
+import controladores.ControlesGenerales;
 import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -21,22 +21,22 @@ public class TraductorTest {
 
     @Test
     public void ProbarQueSeAgreganPalabras() {
-        Traductor.llenadoPalabras("Play", "Juegos");
-        assertEquals("Juegos", Traductor.traduccion("Juegos",true));
+        ControlesGenerales.llenadoPalabras("Play", "Juegos");
+        assertEquals("Juegos", ControlesGenerales.traduccion("Juegos",true));
     }
     
     @Test
     public void ProbarQueCorrespondanLosDias() {
-        assertEquals("Lunes", Traductor.traduccion("Monday",true));
+        assertEquals("Lunes", ControlesGenerales.traduccion("Monday",true));
     }
     
     @Test
     public void ProbarQueCorrespondanLosMeses() {
-        assertEquals("Enero", Traductor.traduccion("January",true));
+        assertEquals("Enero", ControlesGenerales.traduccion("January",true));
     }
     
     @Test
     public void SiNoSeEncuentraDevuelvaLaMisma() {
-        assertEquals("january", Traductor.traduccion("january",true));
+        assertEquals("january", ControlesGenerales.traduccion("january",true));
     }
 }

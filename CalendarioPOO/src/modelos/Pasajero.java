@@ -1,11 +1,11 @@
-
-
 package modelos;
 
+import controladores.ControlesGenerales;
+import javax.swing.JOptionPane;
 
 public class Pasajero {
-    
-    private static int id=1;
+
+    private static int id = 1;
     private int idCliente;
     private String nombre;
     private String apellido;
@@ -13,23 +13,32 @@ public class Pasajero {
     private String email;
     private String tel;
     private String fax;
-    
-    public Pasajero(){
+
+    public Pasajero() {
     }
-    
-    public Pasajero(String nombre, String apellido){
-        this.nombre = nombre;
-        this.apellido= apellido;
-        this.idCliente = id;
-        id++;
+
+    public Pasajero(String nombre, String apellido) {
+        if (ControlesGenerales.validarNulos(nombre) && ControlesGenerales.validarNulos(apellido)) {
+            this.nombre = nombre;
+            this.apellido = apellido;
+            this.idCliente = id;
+            id++;
+        } else {
+            JOptionPane.showMessageDialog(null, "Valor invalido: " + nombre + "," + apellido + ">>>" + getClass());
+        }
     }
-    
-    public Pasajero(String nombre, String apellido, TipoPasajero tipoCliente){
-        this.nombre = nombre;
-        this.apellido= apellido;
-        this.tipoCliente = tipoCliente;
-        this.idCliente = id;
-        id++;
+
+    public Pasajero(String nombre, String apellido, TipoPasajero tipoCliente) {
+        if (ControlesGenerales.validarNulos(nombre) && ControlesGenerales.validarNulos(apellido)
+                &&ControlesGenerales.validarNulos(tipoCliente)) {
+            this.nombre = nombre;
+            this.apellido = apellido;
+            this.tipoCliente = tipoCliente;
+            this.idCliente = id;
+            id++;
+        } else {
+            JOptionPane.showMessageDialog(null, "Valor invalido: " + nombre + "," + apellido + ">>>" + getClass());
+        }
     }
 
     public void setTipoCliente(TipoPasajero tipoCliente) {
@@ -87,9 +96,8 @@ public class Pasajero {
     public void setTel(String tel) {
         this.tel = tel;
     }
-    
-    public String toString(){
+
+    public String toString() {
         return this.nombre + " " + this.apellido;
     }
-    
 }

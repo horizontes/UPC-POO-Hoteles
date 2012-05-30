@@ -19,7 +19,7 @@ public class TipoClienteTest {
     public void QueElTipoCorrespondaAlCreado() {
         TipoPasajero tipoCliente = new TipoPasajero("VIP");
         String expResult = "VIP";
-        String result = tipoCliente.getTipoCliente();
+        String result = tipoCliente.getTipoPasajero();
         assertEquals(expResult, result);
     }
     

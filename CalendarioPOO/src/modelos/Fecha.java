@@ -4,11 +4,12 @@
  */
 package modelos;
 
-import controladores.Traductor;
+import controladores.ControlesGenerales;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import javax.swing.JOptionPane;
 
 public class Fecha {
 
@@ -20,17 +21,27 @@ public class Fecha {
     public static boolean traductoActivado;
 
     public Fecha(int diaNumero, int mesNumero, int anio) {
-        this.diaNumero = diaNumero;
-        this.mesNumero = mesNumero;
-        this.anio = anio;
-        fechaCompleta();
+
+        if (ControlesGenerales.validarNulos(diaNumero*mesNumero*anio)) {
+            this.diaNumero = diaNumero;
+            this.mesNumero = mesNumero;
+            this.anio = anio;
+            fechaCompleta();
+        } else {
+            JOptionPane.showMessageDialog(null, "Valor nulo en: " + getClass());
+        }
     }
 
     public Fecha(Date date) {
-        this.diaNumero = date.getDate();
-        this.mesNumero = date.getMonth() + 1;
-        this.anio = anio = date.getYear() + 1900;
-        fechaCompleta();
+        if (ControlesGenerales.validarNulos(date)) {
+            this.diaNumero = date.getDate();
+            this.mesNumero = date.getMonth() + 1;
+            this.anio = anio = date.getYear() + 1900;
+            fechaCompleta();
+        } else {
+            JOptionPane.showMessageDialog(null, "Valor nulo en: " + getClass());
+        }
+
     }
 
     public int getAnio() {
@@ -90,20 +101,20 @@ public class Fecha {
         return fecha;
     }
 
-    public String toFormatMonth(){
-        return Traductor.traduccion(this.mes, traductoActivado) + " \n" + this.anio;
+    public String toFormatMonth() {
+        return ControlesGenerales.traduccion(this.mes, traductoActivado) + " \n" + this.anio;
     }
-    
+
     public String toFormatCal() {
-        return Traductor.traduccion(this.dia, traductoActivado) + " \n" + this.diaNumero;
+        return ControlesGenerales.traduccion(this.dia, traductoActivado) + " \n" + this.diaNumero;
     }
 
     public String toComplet() {
-        return Traductor.traduccion(this.dia, traductoActivado) + " " + this.diaNumero + " de " + Traductor.traduccion(this.mes, traductoActivado) + " de " + this.anio;
+        return ControlesGenerales.traduccion(this.dia, traductoActivado) + " " + this.diaNumero + " de " + ControlesGenerales.traduccion(this.mes, traductoActivado) + " de " + this.anio;
     }
 
     public String toString() {
-        return Traductor.traduccion(this.dia, traductoActivado) + " " + this.diaNumero + " " + Traductor.traduccion(this.mes, traductoActivado);
+        return ControlesGenerales.traduccion(this.dia, traductoActivado) + " " + this.diaNumero + " " + ControlesGenerales.traduccion(this.mes, traductoActivado);
     }
 
     public String toFormat(String formato) {
@@ -114,5 +125,11 @@ public class Fecha {
     public Date toDate() {
         return new Date(this.anio - 1900, this.mesNumero - 1, this.diaNumero);
     }
-    
+
+    public static void main(String[] args) {
+        Fecha fecha = new Fecha(null);
+        System.out.println(fecha);
+
+    }
 }
+

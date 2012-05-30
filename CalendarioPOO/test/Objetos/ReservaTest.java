@@ -8,10 +8,8 @@ import modelos.Reserva;
 import modelos.Pasajero;
 import modelos.Habitacion;
 import modelos.TipoHabitacion;
-import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.BeforeClass;
 
 /**
  *
@@ -60,9 +58,9 @@ public class ReservaTest {
         assertNotNull(reserva1.getHabitacion());
         assertNotNull(reserva2.getHabitacion());
         assertNotNull(reserva3.getHabitacion());
-        assertNotNull(reserva1.getCliente());
-        assertNotNull(reserva2.getCliente());
-        assertNotNull(reserva3.getCliente());
+        assertNotNull(reserva1.getPasajero());
+        assertNotNull(reserva2.getPasajero());
+        assertNotNull(reserva3.getPasajero());
 
     }
 }

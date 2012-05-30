@@ -13,9 +13,9 @@ import static org.junit.Assert.*;
  *
  * @author Pc
  */
-public class ClienteTest {
+public class PasajeroTest {
     
-    public ClienteTest() {
+    public PasajeroTest() {
     }
     
     @Test
@@ -33,7 +33,7 @@ public class ClienteTest {
         TipoPasajero tipoCliente = new TipoPasajero("VIP");
         Pasajero cliente = new Pasajero("Jorge", "Chavez", tipoCliente);
         assertNotNull(cliente.getTipoCliente());
-        assertEquals(cliente.getTipoCliente().getTipoCliente(), "VIP");
+        assertEquals(cliente.getTipoCliente().getTipoPasajero(), "VIP");
     } 
      
     @Test

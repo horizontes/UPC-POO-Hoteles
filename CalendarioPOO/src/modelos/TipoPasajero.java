@@ -2,21 +2,28 @@
 
 package modelos;
 
+import controladores.ControlesGenerales;
+import javax.swing.JOptionPane;
+
 
 public class TipoPasajero {
     
-    private String tipoCliente;
+    private String tipoPasajero;
 
     public TipoPasajero(String tipoCliente) {
-        this.tipoCliente=tipoCliente;
+        if(ControlesGenerales.validarNulos(tipoCliente)){
+        this.tipoPasajero=tipoCliente;
+        }else{
+            JOptionPane.showMessageDialog(null, "Valor nulo en: " + getClass());
+        }
     }
     
-    public String getTipoCliente() {
-        return tipoCliente;
+    public String getTipoPasajero() {
+        return tipoPasajero;
     }
 
-    public void setTipoCliente(String tipoCliente) {
-        this.tipoCliente = tipoCliente;
+    public void setTipoPasajero(String tipoCliente) {
+        this.tipoPasajero = tipoCliente;
     }
 
 }

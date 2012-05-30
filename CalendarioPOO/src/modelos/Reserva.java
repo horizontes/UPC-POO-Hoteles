@@ -1,14 +1,16 @@
 
 package modelos;
 
+import controladores.ControlesGenerales;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 
 public class Reserva {
     
     private static int id=1;
     private int idReserva;
-    private Pasajero cliente;
+    private Pasajero pasajero;
     private Habitacion habitacion;
     private int dia;
     private int mes;
@@ -16,19 +18,28 @@ public class Reserva {
     private EstadoReserva estado;
     //private Fecha fecha;
     
-    public Reserva(Pasajero cliente, Habitacion habitacion, int dia, int mes, int anio){
-        this.cliente=cliente;
+    public Reserva(Pasajero pasajero, Habitacion habitacion, int dia, int mes, int anio){
+        
+        if(ControlesGenerales.validarNulos(pasajero)&&ControlesGenerales.validarNulos(habitacion)&&
+                ControlesGenerales.validarNumerosValidos(dia*mes*anio)){
+        
+        this.pasajero=pasajero;
         this.habitacion=habitacion;
         this.dia=dia;
         this.mes=mes;
         this.anio=anio;
         this.idReserva=id;
         id++;
+        } else {
+            JOptionPane.showMessageDialog(null, "Valor invalido en: " + pasajero + " " + habitacion + ">>>" + getClass());
+        }
     }
     
-    public Reserva(Pasajero cliente, Habitacion habitacion, int dia, int mes, int anio,
+    public Reserva(Pasajero pasajero, Habitacion habitacion, int dia, int mes, int anio,
             String estadoReserva){
-        this.cliente=cliente;
+        if(ControlesGenerales.validarNulos(pasajero)&&ControlesGenerales.validarNulos(habitacion)&&
+                ControlesGenerales.validarNumerosValidos(dia*mes*anio)&&ControlesGenerales.validarNulos(estadoReserva)){
+        this.pasajero=pasajero;
         this.habitacion=habitacion;
         this.dia=dia;
         this.mes=mes;
@@ -36,6 +47,9 @@ public class Reserva {
         this.idReserva=id;
         this.estado = new EstadoReserva(estadoReserva);
         id++;
+        } else {
+            JOptionPane.showMessageDialog(null, "Valor invalido en: " + pasajero + " " + habitacion + ">>>" + getClass());
+        }
     }
 
     public Fecha getFecha() {
@@ -54,12 +68,12 @@ public class Reserva {
         this.anio = anio;
     }
 
-    public Pasajero getCliente() {
-        return cliente;
+    public Pasajero getPasajero() {
+        return pasajero;
     }
 
-    public void setCliente(Pasajero cliente) {
-        this.cliente = cliente;
+    public void setPasajero(Pasajero pasajero) {
+        this.pasajero = pasajero;
     }
 
     public int getDia() {
@@ -86,6 +100,8 @@ public class Reserva {
         this.mes = mes;
     }
     
+    
+    
     public String toString(){
         return "Reservado";
     }
@@ -95,7 +111,7 @@ public class Reserva {
                 "Detalle de factura\n\n"+
                 "Fecha de emsión:\t\t\t" + new Fecha(new Date()).toComplet()+
                 "\nId de Reserva:\t\t\t" + this.idReserva +
-                "\nNombre de Cliente:\t\t\t" + this.getCliente().toString() +
+                "\nNombre de Cliente:\t\t\t" + this.getPasajero().toString() +
                 "\nNumero de Habitacion:\t\t\t" + this.getHabitacion().getNumHabitacion() +
                 "\nTipo de Habitacion:\t\t\t" + this.getHabitacion().getTipoHabitacion().toString() +
                 "\nPrecio por Dia:\t\t\t" + this.getHabitacion().getTipoHabitacion().getPrecio() +
