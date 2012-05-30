@@ -11,7 +11,7 @@ import java.util.*;
 public class ControladorCalendario {
 
     private List<Reserva> listaReserva = llenadoReservas();
-    public static List<Habitacion> listaHabitacion = llenadoHabitaciones();
+    public static List<Habitacion> listaHabitaciones = llenadoHabitaciones();
     private Object[][] tabla;
 
     public ControladorCalendario() {
@@ -30,25 +30,25 @@ public class ControladorCalendario {
         Cliente cliente10 = new Cliente("Alejandro", "Magno");
 
         listaReserva = new ArrayList<Reserva>();
-        listaReserva.add(new Reserva(cliente1, listaHabitacion.get(1), 28, 5, 2012, "CONFIRMADA"));
-        listaReserva.add(new Reserva(cliente2, listaHabitacion.get(2), 28, 5, 2012, "RESERVADA"));
-        listaReserva.add(new Reserva(cliente3, listaHabitacion.get(4), 28, 5, 2012, "CHECK IN"));
-        listaReserva.add(new Reserva(cliente4, listaHabitacion.get(5), 28, 5, 2012, "CHECK IN"));
-        listaReserva.add(new Reserva(cliente5, listaHabitacion.get(9), 28, 5, 2012, "CHECK IN"));
-        listaReserva.add(new Reserva(cliente5, listaHabitacion.get(10), 28, 5, 2012, "CONFIRMADA"));
-        listaReserva.add(new Reserva(cliente6, listaHabitacion.get(11), 28, 5, 2012, "CONFIRMADA"));
-        listaReserva.add(new Reserva(cliente7, listaHabitacion.get(12), 28, 5, 2012, "CONFIRMADA"));
-        listaReserva.add(new Reserva(cliente8, listaHabitacion.get(21), 28, 5, 2012, "CONFIRMADA"));
-        listaReserva.add(new Reserva(cliente9, listaHabitacion.get(22), 28, 5, 2012, "CONFIRMADA"));
-        listaReserva.add(new Reserva(cliente10, listaHabitacion.get(23), 28, 5, 2012, "RESERVADA"));
-        listaReserva.add(new Reserva(cliente10, listaHabitacion.get(24), 28, 5, 2012, "RESERVADA"));
-        listaReserva.add(new Reserva(cliente10, listaHabitacion.get(24), 20, 6, 2012, "RESERVADA"));
-        listaReserva.add(new Reserva(cliente10, listaHabitacion.get(23), 20, 6, 2012, "RESERVADA"));
+        listaReserva.add(new Reserva(cliente1, listaHabitaciones.get(1), 28, 5, 2012, "CONFIRMADA"));
+        listaReserva.add(new Reserva(cliente2, listaHabitaciones.get(2), 28, 5, 2012, "RESERVADA"));
+        listaReserva.add(new Reserva(cliente3, listaHabitaciones.get(4), 28, 5, 2012, "CHECK IN"));
+        listaReserva.add(new Reserva(cliente4, listaHabitaciones.get(5), 28, 5, 2012, "CHECK IN"));
+        listaReserva.add(new Reserva(cliente5, listaHabitaciones.get(9), 28, 5, 2012, "CHECK IN"));
+        listaReserva.add(new Reserva(cliente5, listaHabitaciones.get(10), 28, 5, 2012, "CONFIRMADA"));
+        listaReserva.add(new Reserva(cliente6, listaHabitaciones.get(11), 28, 5, 2012, "CONFIRMADA"));
+        listaReserva.add(new Reserva(cliente7, listaHabitaciones.get(12), 28, 5, 2012, "CONFIRMADA"));
+        listaReserva.add(new Reserva(cliente8, listaHabitaciones.get(21), 28, 5, 2012, "CONFIRMADA"));
+        listaReserva.add(new Reserva(cliente9, listaHabitaciones.get(22), 28, 5, 2012, "CONFIRMADA"));
+        listaReserva.add(new Reserva(cliente10, listaHabitaciones.get(23), 28, 5, 2012, "RESERVADA"));
+        listaReserva.add(new Reserva(cliente10, listaHabitaciones.get(24), 28, 5, 2012, "RESERVADA"));
+        listaReserva.add(new Reserva(cliente10, listaHabitaciones.get(24), 20, 6, 2012, "RESERVADA"));
+        listaReserva.add(new Reserva(cliente10, listaHabitaciones.get(23), 20, 6, 2012, "RESERVADA"));
         return this.listaReserva;
     }
 
     public static List<Habitacion> llenadoHabitaciones() {
-        listaHabitacion = new ArrayList<Habitacion>();
+        listaHabitaciones = new ArrayList<Habitacion>();
         int i = 0;
         int a = 0;
         int b = 0;
@@ -57,25 +57,26 @@ public class ControladorCalendario {
             if (i < 10) {
                 TipoHabitacion tipoHabitacion = new TipoHabitacion("NORMAL", 50.00);
                 Habitacion habitacion = new Habitacion(301 + a, tipoHabitacion);
-                listaHabitacion.add(habitacion);
+                listaHabitaciones.add(habitacion);
                 a++;
             } else if (i < 20) {
                 TipoHabitacion tipoHabitacion = new TipoHabitacion("DOBLE", 100.00);
                 Habitacion habitacion = new Habitacion(201 + b, tipoHabitacion);
-                listaHabitacion.add(habitacion);
+                listaHabitaciones.add(habitacion);
                 b++;
             } else {
                 TipoHabitacion tipoHabitacion = new TipoHabitacion("PRESIDENCIAL", 200.00);
                 Habitacion habitacion = new Habitacion(101 + c, tipoHabitacion);
-                listaHabitacion.add(habitacion);
+                listaHabitaciones.add(habitacion);
                 c++;
             }
             i++;
         }
-        return listaHabitacion;
+        return listaHabitaciones;
     }
 
-    public Object[][] listaHabitacionesTab(List<Habitacion> listaHabitacion) {
+    public Object[][] listaHabitacionesTab() {
+        List<Habitacion> listaHabitacion = listaHabitaciones;
         Object[][] guia = new Object[listaHabitacion.size()][1];
         for (int i = 0; i < listaHabitacion.size(); i++) {
             guia[i][0] = listaHabitacion.get(i).getNumHabitacion();
@@ -83,7 +84,8 @@ public class ControladorCalendario {
         return guia;
     }
 
-    public Object[][] listaHabitacionesTabOrdenado(List<Habitacion> listaHabitacion) {
+    public Object[][] listaHabitacionesTabOrdenado() {
+        List<Habitacion> listaHabitacion = listaHabitaciones;
         Object[][] guia = new Object[listaHabitacion.size()][1];
         for (int i = 0; i < listaHabitacion.size(); i++) {
             guia[i][0] = listaHabitacion.get(i);
@@ -100,7 +102,8 @@ public class ControladorCalendario {
         return datosFinal;
     }
 
-    public Object[][] listaHabitacionesCom(List<Habitacion> listaHabitacion) {
+    public Object[][] listaHabitacionesCom() {
+        List<Habitacion> listaHabitacion = listaHabitaciones;
         Object[][] guia = new Object[1][listaHabitacion.size()];
         for (int i = 0; i < listaHabitacion.size(); i++) {
             guia[0][i] = listaHabitacion.get(i);
@@ -108,7 +111,8 @@ public class ControladorCalendario {
         return guia;
     }
 
-    public Object[][] listaHabitacionesComOrdenado(List<Habitacion> listaHabitacion) {
+    public Object[][] listaHabitacionesComOrdenado() {
+        List<Habitacion> listaHabitacion = listaHabitaciones;
         Object[][] guia = new Object[1][listaHabitacion.size()];
         for (int i = 0; i < listaHabitacion.size(); i++) {
             guia[0][i] = listaHabitacion.get(i).getNumHabitacion();
@@ -177,10 +181,10 @@ public class ControladorCalendario {
 
     public Object[][] LlenadoDeCalendario(int nroSemanas, int dia, int mes, int anio) {
         
-        Object[][] listaHabitacionesTabla = listaHabitacionesCom(listaHabitacion);
+        Object[][] listaHabitacionesTabla = listaHabitacionesCom();
         Object[] guia = new Object[30];
         System.arraycopy(listaHabitacionesTabla[0], 0, guia, 0, guia.length);
-        Fecha[] diasDeSemanasFecha = diasDeSemanasFecha(nroSemanas, dia, mes, anio);
+        Fecha[] diasDeSemanasFecha = listaDeDiasDeSemana(nroSemanas, dia, mes, anio);
 
         Object[][] tablaCompleta = new Object[guia.length][diasDeSemanasFecha.length];
 
@@ -200,11 +204,11 @@ public class ControladorCalendario {
 
     public Object[][] LlenadoDeCalendarioOrdenado(int nroSemanas, int dia, int mes, int anio) {
         
-        Object[][] listaHabitacionesTabla = listaHabitacionesComOrdenado(listaHabitacion);
+        Object[][] listaHabitacionesTabla = listaHabitacionesComOrdenado();
         Object[] guia = new Object[30];
         System.arraycopy(listaHabitacionesTabla[0], 0, guia, 0, guia.length);
         Arrays.sort(guia);
-        Fecha[] diasDeSemanasFecha = diasDeSemanasFecha(nroSemanas, dia, mes, anio);
+        Fecha[] diasDeSemanasFecha = listaDeDiasDeSemana(nroSemanas, dia, mes, anio);
 
         Object[][] tablaCompleta = new Object[guia.length][diasDeSemanasFecha.length];
 
@@ -222,7 +226,7 @@ public class ControladorCalendario {
         return tablaCompleta;
     }
 
-    public Fecha[] diasDeSemanasFecha(int nroSemanas, int dia, int mes, int anio) {
+    public Fecha[] listaDeDiasDeSemana(int nroSemanas, int dia, int mes, int anio) {
         
         int nroDias = nroSemanas * 7;
         Fecha[] semanas = new Fecha[nroDias];
@@ -240,7 +244,7 @@ public class ControladorCalendario {
         return semanas;
     }
 
-    public Mes[] mesesComboBox(Fecha fecha) {
+    public Mes[] ListaDeMeses(Fecha fecha) {
         Mes[] mesesString = new Mes[13];
         fecha = fecha.add(-7, Calendar.MONTH);
 

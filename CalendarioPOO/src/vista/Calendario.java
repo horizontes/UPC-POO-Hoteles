@@ -25,31 +25,32 @@ public class Calendario extends javax.swing.JFrame {
      */
     public Calendario() {
         initComponents();
+        iniciarComboBoxs();
         iniciarCalendario();
-        iniciarComboBoxMeses();
+        
     }
 
     private void iniciarCalendario() {
         //al iniciar calendario estará en la fecha de hoy
         Date date = new Date();
-        int dia = date.getDate() - 1;
+        int dia = date.getDate();
         int mes = date.getMonth() + 1;
         int anio = date.getYear() + 1900;
         tablaCalendario = new ControladorCalendario();
         //Fechas en español
         Fecha.traductoActivado = true;
         //Llenado de columna de la tabla calendario
-        iniciarTablaCalendario(jTable1, jTable2, 1, dia, mes, anio,
-                listaHabitacionesTablaSelected, jRadioButton1.isSelected());
+        iniciarTablaCalendario(tabListaHabitaciones, tabCalendarioReservas, 1, dia, mes, anio,
+                listaHabitacionesTablaSelected, radBtnOrdenarHabTipo.isSelected());
 
     }
 
-    private void iniciarComboBoxMeses() {
+    private void iniciarComboBoxs() {
         Fecha fecha = fechaSelected;
-        Mes[] mesesComboBox = tablaCalendario.mesesComboBox(fecha);
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(mesesComboBox));
-        jComboBox1.setSelectedIndex(6);
-        jComboBox2.setSelectedIndex(0);
+        Mes[] mesesComboBox = tablaCalendario.ListaDeMeses(fecha);
+        cbxMesActual.setModel(new javax.swing.DefaultComboBoxModel(mesesComboBox));
+        cbxMesActual.setSelectedIndex(6);
+        cbxFiltroAvance.setSelectedIndex(0);
 
     }
 
@@ -65,111 +66,111 @@ public class Calendario extends javax.swing.JFrame {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        jComboBox1 = new javax.swing.JComboBox();
+        cbxMesActual = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        btnUnaSemana = new javax.swing.JButton();
+        btnDosSemanas = new javax.swing.JButton();
+        BtnTresSemanas = new javax.swing.JButton();
+        btnUnMes = new javax.swing.JButton();
+        btnAnterior = new javax.swing.JButton();
+        btnHoy = new javax.swing.JButton();
+        btnSiguiente = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabCalendarioReservas = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable(){
+        tabListaHabitaciones = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
             }
         }
         ;
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jProgressBar1 = new javax.swing.JProgressBar();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
+        radBtnOrdenarHabTipo = new javax.swing.JRadioButton();
+        proBarAvanceDeMesTab = new javax.swing.JProgressBar();
+        labFechaPrimeraTabla = new javax.swing.JLabel();
+        labFechaUltimaTabla = new javax.swing.JLabel();
+        cbxFiltroAvance = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jDesktopPane1.setBackground(new java.awt.Color(153, 204, 255));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cbxMesActual.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxMesActual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cbxMesActualActionPerformed(evt);
             }
         });
-        jComboBox1.setBounds(10, 10, 130, 20);
-        jDesktopPane1.add(jComboBox1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        cbxMesActual.setBounds(10, 10, 130, 20);
+        jDesktopPane1.add(cbxMesActual, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel1.setText("Ver:");
         jLabel1.setBounds(150, 10, 20, 20);
         jDesktopPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton1.setText("Una semana");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnUnaSemana.setText("Una semana");
+        btnUnaSemana.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnUnaSemanaActionPerformed(evt);
             }
         });
-        jButton1.setBounds(170, 10, 91, 23);
-        jDesktopPane1.add(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        btnUnaSemana.setBounds(170, 10, 91, 23);
+        jDesktopPane1.add(btnUnaSemana, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton2.setText("Dos semanas");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnDosSemanas.setText("Dos semanas");
+        btnDosSemanas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnDosSemanasActionPerformed(evt);
             }
         });
-        jButton2.setBounds(260, 10, 95, 23);
-        jDesktopPane1.add(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        btnDosSemanas.setBounds(260, 10, 95, 23);
+        jDesktopPane1.add(btnDosSemanas, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton3.setText("Tres semanas");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        BtnTresSemanas.setText("Tres semanas");
+        BtnTresSemanas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                BtnTresSemanasActionPerformed(evt);
             }
         });
-        jButton3.setBounds(360, 10, 100, 23);
-        jDesktopPane1.add(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        BtnTresSemanas.setBounds(360, 10, 100, 23);
+        jDesktopPane1.add(BtnTresSemanas, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton4.setText("Un mes");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnUnMes.setText("Un mes");
+        btnUnMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnUnMesActionPerformed(evt);
             }
         });
-        jButton4.setBounds(460, 10, 80, 23);
-        jDesktopPane1.add(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        btnUnMes.setBounds(460, 10, 80, 23);
+        jDesktopPane1.add(btnUnMes, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton5.setText("Anterior");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnAnterior.setText("Anterior");
+        btnAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnAnteriorActionPerformed(evt);
             }
         });
-        jButton5.setBounds(820, 10, 71, 23);
-        jDesktopPane1.add(jButton5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        btnAnterior.setBounds(820, 10, 71, 23);
+        jDesktopPane1.add(btnAnterior, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton6.setText("Hoy");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnHoy.setText("Hoy");
+        btnHoy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnHoyActionPerformed(evt);
             }
         });
-        jButton6.setBounds(890, 10, 51, 23);
-        jDesktopPane1.add(jButton6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        btnHoy.setBounds(890, 10, 51, 23);
+        jDesktopPane1.add(btnHoy, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jButton7.setText("Siguiente");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        btnSiguiente.setText("Siguiente");
+        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                btnSiguienteActionPerformed(evt);
             }
         });
-        jButton7.setBounds(940, 10, 80, 23);
-        jDesktopPane1.add(jButton7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        btnSiguiente.setBounds(940, 10, 80, 23);
+        jDesktopPane1.add(btnSiguiente, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabCalendarioReservas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -180,13 +181,13 @@ public class Calendario extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable2.setRowSelectionAllowed(false);
-        jScrollPane2.setViewportView(jTable2);
+        tabCalendarioReservas.setRowSelectionAllowed(false);
+        jScrollPane2.setViewportView(tabCalendarioReservas);
 
         jScrollPane2.setBounds(70, 110, 950, 510);
         jDesktopPane1.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabListaHabitaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -197,40 +198,40 @@ public class Calendario extends javax.swing.JFrame {
                 "Numero de Hab."
             }
         ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabListaHabitaciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                tabListaHabitacionesMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabListaHabitaciones);
 
         jScrollPane1.setBounds(10, 110, 60, 510);
         jDesktopPane1.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jRadioButton1.setText("Ordenar habitacion por Tipo");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        radBtnOrdenarHabTipo.setText("Ordenar habitacion por Tipo");
+        radBtnOrdenarHabTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                radBtnOrdenarHabTipoActionPerformed(evt);
             }
         });
-        jRadioButton1.setBounds(20, 50, 170, 23);
-        jDesktopPane1.add(jRadioButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jProgressBar1.setBounds(70, 99, 950, 10);
-        jDesktopPane1.add(jProgressBar1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        radBtnOrdenarHabTipo.setBounds(20, 50, 170, 23);
+        jDesktopPane1.add(radBtnOrdenarHabTipo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        proBarAvanceDeMesTab.setBounds(70, 99, 950, 10);
+        jDesktopPane1.add(proBarAvanceDeMesTab, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel2.setText(mesStringActual);
-        jLabel2.setBounds(70, 80, 110, 14);
-        jDesktopPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labFechaPrimeraTabla.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labFechaPrimeraTabla.setText(mesStringActual);
+        labFechaPrimeraTabla.setBounds(70, 80, 110, 14);
+        jDesktopPane1.add(labFechaPrimeraTabla, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText(mesStringFinal);
-        jLabel3.setBounds(924, 80, 90, 14);
-        jDesktopPane1.add(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        labFechaUltimaTabla.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labFechaUltimaTabla.setText(mesStringFinal);
+        labFechaUltimaTabla.setBounds(924, 80, 90, 14);
+        jDesktopPane1.add(labFechaUltimaTabla, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mes", "Dia" }));
-        jComboBox2.setBounds(820, 40, 80, 20);
-        jDesktopPane1.add(jComboBox2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        cbxFiltroAvance.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mes", "Dia" }));
+        cbxFiltroAvance.setBounds(820, 40, 80, 20);
+        jDesktopPane1.add(cbxFiltroAvance, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jTabbedPane1.addTab("DASHBOARD", jDesktopPane1);
 
@@ -248,97 +249,97 @@ public class Calendario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnUnaSemanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnaSemanaActionPerformed
 
-        iniciarTablaCalendario(jTable1, jTable2, 1, fechaSelected.getDiaNumero(),
-                fechaSelected.getMesNumero(), fechaSelected.getAnio(), listaHabitacionesTablaSelected, jRadioButton1.isSelected());
+        iniciarTablaCalendario(tabListaHabitaciones, tabCalendarioReservas, 1, fechaSelected.getDiaNumero(),
+                fechaSelected.getMesNumero(), fechaSelected.getAnio(), listaHabitacionesTablaSelected, radBtnOrdenarHabTipo.isSelected());
         vistaSemanasSelected = 1;
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnUnaSemanaActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        mesActual = this.jComboBox1.getSelectedIndex();
-        if (mesActual != mesAnterior) {
-            Mes selectedItem = (Mes) this.jComboBox1.getSelectedItem();
+    private void cbxMesActualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMesActualActionPerformed
+        mesActualFlag = this.cbxMesActual.getSelectedIndex();
+        if (mesActualFlag != mesAnteriorFlag) {
+            Mes selectedItem = (Mes) this.cbxMesActual.getSelectedItem();
             int mes1 = selectedItem.getFecha().getMesNumero();
             int anio1 = selectedItem.getFecha().getAnio();
             fechaSelected = new Fecha(fechaSelected.getDiaNumero(), mes1, anio1);
-            iniciarTablaCalendario(jTable1, jTable2, vistaSemanasSelected, fechaSelected.getDiaNumero(),
+            iniciarTablaCalendario(tabListaHabitaciones, tabCalendarioReservas, vistaSemanasSelected, fechaSelected.getDiaNumero(),
                     fechaSelected.getMesNumero(), fechaSelected.getAnio(), listaHabitacionesTablaSelected,
-                    jRadioButton1.isSelected());
+                    radBtnOrdenarHabTipo.isSelected());
         }
-        mesAnterior = mesActual;
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+        mesAnteriorFlag = mesActualFlag;
+    }//GEN-LAST:event_cbxMesActualActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnDosSemanasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDosSemanasActionPerformed
 
-        iniciarTablaCalendario(jTable1, jTable2, 2, fechaSelected.getDiaNumero(),
+        iniciarTablaCalendario(tabListaHabitaciones, tabCalendarioReservas, 2, fechaSelected.getDiaNumero(),
                 fechaSelected.getMesNumero(), fechaSelected.getAnio(), listaHabitacionesTablaSelected,
-                jRadioButton1.isSelected());
+                radBtnOrdenarHabTipo.isSelected());
         vistaSemanasSelected = 2;
-    
-    }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnDosSemanasActionPerformed
 
-        iniciarTablaCalendario(jTable1, jTable2, 3, fechaSelected.getDiaNumero(),
+    private void BtnTresSemanasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTresSemanasActionPerformed
+
+        iniciarTablaCalendario(tabListaHabitaciones, tabCalendarioReservas, 3, fechaSelected.getDiaNumero(),
                 fechaSelected.getMesNumero(), fechaSelected.getAnio(), listaHabitacionesTablaSelected,
-                jRadioButton1.isSelected());
+                radBtnOrdenarHabTipo.isSelected());
         vistaSemanasSelected = 3;
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_BtnTresSemanasActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
-        iniciarTablaCalendario(jTable1, jTable2, 4, fechaSelected.getDiaNumero(),
+    private void btnUnMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnMesActionPerformed
+
+        iniciarTablaCalendario(tabListaHabitaciones, tabCalendarioReservas, 4, fechaSelected.getDiaNumero(),
                 fechaSelected.getMesNumero(), fechaSelected.getAnio(), listaHabitacionesTablaSelected,
-                jRadioButton1.isSelected());
+                radBtnOrdenarHabTipo.isSelected());
         vistaSemanasSelected = 4;
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnUnMesActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        int avance=Calendar.MONTH;
-        if(jComboBox2.getSelectedIndex()==1){
+    private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
+        int avance = Calendar.MONTH;
+        if (cbxFiltroAvance.getSelectedIndex() == 1) {
             avance = Calendar.DATE;
         }
         fechaSelected = fechaSelected.add(-1, avance);
-        iniciarTablaCalendario(jTable1, jTable2, vistaSemanasSelected, fechaSelected.getDiaNumero(),
+        iniciarTablaCalendario(tabListaHabitaciones, tabCalendarioReservas, vistaSemanasSelected, fechaSelected.getDiaNumero(),
                 fechaSelected.getMesNumero(), fechaSelected.getAnio(), listaHabitacionesTablaSelected,
-                jRadioButton1.isSelected());
-    }//GEN-LAST:event_jButton5ActionPerformed
+                radBtnOrdenarHabTipo.isSelected());
+    }//GEN-LAST:event_btnAnteriorActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnHoyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoyActionPerformed
         iniciarCalendario();
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btnHoyActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        int avance=Calendar.MONTH;
-        if(jComboBox2.getSelectedIndex()==1){
+    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
+        int avance = Calendar.MONTH;
+        if (cbxFiltroAvance.getSelectedIndex() == 1) {
             avance = Calendar.DATE;
         }
         fechaSelected = fechaSelected.add(1, avance);
-        iniciarTablaCalendario(jTable1, jTable2, vistaSemanasSelected, fechaSelected.getDiaNumero(),
+        iniciarTablaCalendario(tabListaHabitaciones, tabCalendarioReservas, vistaSemanasSelected, fechaSelected.getDiaNumero(),
                 fechaSelected.getMesNumero(), fechaSelected.getAnio(), listaHabitacionesTablaSelected,
-                jRadioButton1.isSelected());
-    }//GEN-LAST:event_jButton7ActionPerformed
+                radBtnOrdenarHabTipo.isSelected());
+    }//GEN-LAST:event_btnSiguienteActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        iniciarTablaCalendario(jTable1, jTable2, vistaSemanasSelected, fechaSelected.getDiaNumero(),
+    private void radBtnOrdenarHabTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radBtnOrdenarHabTipoActionPerformed
+        iniciarTablaCalendario(tabListaHabitaciones, tabCalendarioReservas, vistaSemanasSelected, fechaSelected.getDiaNumero(),
                 fechaSelected.getMesNumero(), fechaSelected.getAnio(), listaHabitacionesTablaSelected,
-                jRadioButton1.isSelected());
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+                radBtnOrdenarHabTipo.isSelected());
+    }//GEN-LAST:event_radBtnOrdenarHabTipoActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        if(evt.getClickCount()==2){
-            int columna = jTable1.columnAtPoint(evt.getPoint());
-            int fila = jTable1.rowAtPoint(evt.getPoint());
-            try{
-            Reserva valueAt = (Reserva)jTable1.getValueAt(fila , columna);
-            JOptionPane.showMessageDialog(this, valueAt.toDetail(),"Detalle de Reserva", 2);
-            }catch(Exception ex){
-                JOptionPane.showMessageDialog(this, "No hay reservación","Detalle de Reserva", 1);
+    private void tabListaHabitacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabListaHabitacionesMouseClicked
+        if (evt.getClickCount() == 2) {
+            int columna = tabListaHabitaciones.columnAtPoint(evt.getPoint());
+            int fila = tabListaHabitaciones.rowAtPoint(evt.getPoint());
+            try {
+                Reserva valueAt = (Reserva) tabListaHabitaciones.getValueAt(fila, columna);
+                JOptionPane.showMessageDialog(this, valueAt.toDetail(), "Detalle de Reserva", 2);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "No hay reservación", "Detalle de Reserva", 1);
             }
         }
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_tabListaHabitacionesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -385,7 +386,7 @@ public class Calendario extends javax.swing.JFrame {
     private void iniciarTablaCalendario(JTable jtableCalendario, JTable jtableHabitaciones, int nroSemanas, int dia,
             int mes, int anio, Object[][] listaHabitacionesTab, boolean ordernadoPorHabitacion) {
         Fecha.traductoActivado = true;
-        Fecha[] titulos2 = tablaCalendario.diasDeSemanasFecha(nroSemanas, dia, mes, anio);
+        Fecha[] titulos2 = tablaCalendario.listaDeDiasDeSemana(nroSemanas, dia, mes, anio);
         String mesInicial = "";
         int conteoMesInicial = 0;
         String mesFinal = "";
@@ -399,12 +400,12 @@ public class Calendario extends javax.swing.JFrame {
         }
 
         mesIntInicial = conteoMesInicial;
-        jProgressBar1.setMaximum(titulos2.length);
-        jLabel2.setText(mesInicial);
-        jLabel3.setText(mesFinal);
-        jProgressBar1.setValue(mesIntInicial);
+        proBarAvanceDeMesTab.setMaximum(titulos2.length);
+        labFechaPrimeraTabla.setText(mesInicial);
+        labFechaUltimaTabla.setText(mesFinal);
+        proBarAvanceDeMesTab.setValue(mesIntInicial);
         if (!ordernadoPorHabitacion) {
-            listaHabitacionesTab = tablaCalendario.listaHabitacionesTab(ControladorCalendario.listaHabitacion);
+            listaHabitacionesTab = tablaCalendario.listaHabitacionesTab();
             //String[] titulos = tablaCalendario.diasDeSemanasString(nroSemanas, dia, mes, anio);
 
             Object[][] LlenadoDeCalendario = tablaCalendario.LlenadoDeCalendario(nroSemanas, dia, mes, anio);
@@ -420,7 +421,7 @@ public class Calendario extends javax.swing.JFrame {
                     LlenadoDeCalendario,
                     titulos2));
         } else {
-            listaHabitacionesTab = tablaCalendario.listaHabitacionesTabOrdenado(ControladorCalendario.listaHabitacion);
+            listaHabitacionesTab = tablaCalendario.listaHabitacionesTabOrdenado();
             Object[][] LlenadoDeCalendario = tablaCalendario.LlenadoDeCalendarioOrdenado(nroSemanas, dia, mes, anio);
             DefaultTableModel modelo = new javax.swing.table.DefaultTableModel(
                     listaHabitacionesTab,
@@ -451,39 +452,39 @@ public class Calendario extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jtableCalendario);
         listaHabitacionesTablaSelected = listaHabitacionesTab;
         fechaSelected = tablaCalendario.fijarFechaActualEnTabla(titulos2);
-     
-        
+
+
 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JButton BtnTresSemanas;
+    private javax.swing.JButton btnAnterior;
+    private javax.swing.JButton btnDosSemanas;
+    private javax.swing.JButton btnHoy;
+    private javax.swing.JButton btnSiguiente;
+    private javax.swing.JButton btnUnMes;
+    private javax.swing.JButton btnUnaSemana;
+    private javax.swing.JComboBox cbxFiltroAvance;
+    private javax.swing.JComboBox cbxMesActual;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPopupMenu jPopupMenu1;
-    private javax.swing.JProgressBar jProgressBar1;
-    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JLabel labFechaPrimeraTabla;
+    private javax.swing.JLabel labFechaUltimaTabla;
+    private javax.swing.JProgressBar proBarAvanceDeMesTab;
+    private javax.swing.JRadioButton radBtnOrdenarHabTipo;
+    private javax.swing.JTable tabCalendarioReservas;
+    private javax.swing.JTable tabListaHabitaciones;
     // End of variables declaration//GEN-END:variables
     private ControladorCalendario tablaCalendario;
     private static Object[][] listaHabitacionesTablaSelected;
     private static Fecha fechaSelected;
     private static int vistaSemanasSelected = 1;
-    private static int mesActual;
-    private static int mesAnterior;
+    private static int mesActualFlag;
+    private static int mesAnteriorFlag;
     private static String mesStringActual;
     private static String mesStringFinal;
     private int mesIntInicial;
