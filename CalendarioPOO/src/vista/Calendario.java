@@ -25,8 +25,8 @@ public class Calendario extends javax.swing.JFrame {
      */
     public Calendario() {
         initComponents();
-        iniciarComboBoxs();
         iniciarCalendario();
+        iniciarComboBoxs();
         
     }
 

@@ -1,6 +1,6 @@
 package controladores;
 
-import Objetos.Cliente;
+import Objetos.Pasajero;
 import Objetos.Fecha;
 import Objetos.Habitacion;
 import Objetos.Mes;
@@ -18,16 +18,16 @@ public class ControladorCalendario {
     }
 
     public List<Reserva> llenadoReservas() {
-        Cliente cliente1 = new Cliente("Jorge", "Chavez");
-        Cliente cliente2 = new Cliente("Miguel", "Grau");
-        Cliente cliente3 = new Cliente("Francisco", "Bolognesi");
-        Cliente cliente4 = new Cliente("Manuel", "Prada");
-        Cliente cliente5 = new Cliente("Jose", "Galvez");
-        Cliente cliente6 = new Cliente("Cesar", "Vallejo");
-        Cliente cliente7 = new Cliente("Jose", "Mariategui");
-        Cliente cliente8 = new Cliente("Alfonso", "Ugarte");
-        Cliente cliente9 = new Cliente("Jose", "Chocano");
-        Cliente cliente10 = new Cliente("Alejandro", "Magno");
+        Pasajero cliente1 = new Pasajero("Jorge", "Chavez");
+        Pasajero cliente2 = new Pasajero("Miguel", "Grau");
+        Pasajero cliente3 = new Pasajero("Francisco", "Bolognesi");
+        Pasajero cliente4 = new Pasajero("Manuel", "Prada");
+        Pasajero cliente5 = new Pasajero("Jose", "Galvez");
+        Pasajero cliente6 = new Pasajero("Cesar", "Vallejo");
+        Pasajero cliente7 = new Pasajero("Jose", "Mariategui");
+        Pasajero cliente8 = new Pasajero("Alfonso", "Ugarte");
+        Pasajero cliente9 = new Pasajero("Jose", "Chocano");
+        Pasajero cliente10 = new Pasajero("Alejandro", "Magno");
 
         listaReserva = new ArrayList<Reserva>();
         listaReserva.add(new Reserva(cliente1, listaHabitaciones.get(1), 28, 5, 2012, "CONFIRMADA"));
@@ -259,25 +259,7 @@ public class ControladorCalendario {
     public Fecha fijarFechaActualEnTabla(Fecha[] diasDeSemanasFecha) {
         Fecha fecha;
         fecha = diasDeSemanasFecha[0];
-        System.out.println(fecha);
         return fecha;
     }
 
-//    public String[] diasDeSemanasString(int nroSemanas, int dia, int mes, int anio) {
-//        int nroDias = nroSemanas * 7;
-//        String[] semanas = new String[nroDias];
-//        Date date = new Date(anio - 1900, mes - 1, dia);
-//        Calendar hoy = Calendar.getInstance();
-//        hoy.setTime(date);
-//        int i = 0;
-//        semanas[0] = new Fecha(hoy.getTime()).toFormatCal();
-//        i++;
-//        while (i < nroDias) {
-//            hoy.add(Calendar.DATE, 1);
-//            semanas[i] = new Fecha(hoy.getTime()).toFormatCal();
-//            i++;
-//        }
-//        return semanas;
-//    }
- 
 }

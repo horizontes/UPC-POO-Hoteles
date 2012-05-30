@@ -18,9 +18,9 @@ public class ClienteTest {
     
     @Test
     public void QueLosIdSeanCorrelativos() {
-        Cliente cliente1 = new Cliente("Jorge", "Chavez");
-        Cliente cliente2 = new Cliente("Miguel", "Grau");
-        Cliente cliente3 = new Cliente("Francisco", "Bolognesi");
+        Pasajero cliente1 = new Pasajero("Jorge", "Chavez");
+        Pasajero cliente2 = new Pasajero("Miguel", "Grau");
+        Pasajero cliente3 = new Pasajero("Francisco", "Bolognesi");
         assertEquals(cliente1.getIdCliente(), 1);
         assertEquals(cliente2.getIdCliente(), 2);
         assertEquals(cliente3.getIdCliente(), 3);
@@ -28,21 +28,21 @@ public class ClienteTest {
     
     @Test
     public void QueTodosTenganTipo() {
-        TipoCliente tipoCliente = new TipoCliente("VIP");
-        Cliente cliente = new Cliente("Jorge", "Chavez", tipoCliente);
+        TipoPasajero tipoCliente = new TipoPasajero("VIP");
+        Pasajero cliente = new Pasajero("Jorge", "Chavez", tipoCliente);
         assertNotNull(cliente.getTipoCliente());
         assertEquals(cliente.getTipoCliente().getTipoCliente(), "VIP");
     } 
      
     @Test
     public void QueTodosTenganNombre() {
-        Cliente cliente = new Cliente("Jorge", "Chavez");
+        Pasajero cliente = new Pasajero("Jorge", "Chavez");
         assertNotNull(cliente.toString());
     }
     
     @Test
     public void QueSePuedaAgregarLosDemasAtributos() {
-        Cliente cliente = new Cliente("Jorge", "Chavez");
+        Pasajero cliente = new Pasajero("Jorge", "Chavez");
         assertNotNull(cliente.toString());
         cliente.setEmail("jchavez@hotmail.com");
         assertEquals(cliente.getEmail(),"jchavez@hotmail.com");
@@ -54,7 +54,7 @@ public class ClienteTest {
 
     @Test
     public void QueElToStringSeaNombreYApellido() {
-        Cliente cliente = new Cliente("Jorge", "Chavez");
+        Pasajero cliente = new Pasajero("Jorge", "Chavez");
         assertEquals(cliente.toString(),"Jorge Chavez");
     }
 

@@ -16,7 +16,7 @@ public class TipoClienteTest {
 
     @Test
     public void QueElTipoCorrespondaAlCreado() {
-        TipoCliente tipoCliente = new TipoCliente("VIP");
+        TipoPasajero tipoCliente = new TipoPasajero("VIP");
         String expResult = "VIP";
         String result = tipoCliente.getTipoCliente();
         assertEquals(expResult, result);

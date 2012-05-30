@@ -3,28 +3,28 @@
 package Objetos;
 
 
-public class Cliente {
+public class Pasajero {
     
     private static int id=1;
     private int idCliente;
     private String nombre;
     private String apellido;
-    private TipoCliente tipoCliente;
+    private TipoPasajero tipoCliente;
     private String email;
     private String tel;
     private String fax;
     
-    public Cliente(){
+    public Pasajero(){
     }
     
-    public Cliente(String nombre, String apellido){
+    public Pasajero(String nombre, String apellido){
         this.nombre = nombre;
         this.apellido= apellido;
         this.idCliente = id;
         id++;
     }
     
-    public Cliente(String nombre, String apellido, TipoCliente tipoCliente){
+    public Pasajero(String nombre, String apellido, TipoPasajero tipoCliente){
         this.nombre = nombre;
         this.apellido= apellido;
         this.tipoCliente = tipoCliente;
@@ -32,11 +32,11 @@ public class Cliente {
         id++;
     }
 
-    public void setTipoCliente(TipoCliente tipoCliente) {
+    public void setTipoCliente(TipoPasajero tipoCliente) {
         this.tipoCliente = tipoCliente;
     }
 
-    public TipoCliente getTipoCliente() {
+    public TipoPasajero getTipoCliente() {
         return tipoCliente;
     }
 

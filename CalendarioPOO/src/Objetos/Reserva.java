@@ -8,7 +8,7 @@ public class Reserva {
     
     private static int id=1;
     private int idReserva;
-    private Cliente cliente;
+    private Pasajero cliente;
     private Habitacion habitacion;
     private int dia;
     private int mes;
@@ -16,7 +16,7 @@ public class Reserva {
     private EstadoReserva estado;
     //private Fecha fecha;
     
-    public Reserva(Cliente cliente, Habitacion habitacion, int dia, int mes, int anio){
+    public Reserva(Pasajero cliente, Habitacion habitacion, int dia, int mes, int anio){
         this.cliente=cliente;
         this.habitacion=habitacion;
         this.dia=dia;
@@ -26,7 +26,7 @@ public class Reserva {
         id++;
     }
     
-    public Reserva(Cliente cliente, Habitacion habitacion, int dia, int mes, int anio,
+    public Reserva(Pasajero cliente, Habitacion habitacion, int dia, int mes, int anio,
             String estadoReserva){
         this.cliente=cliente;
         this.habitacion=habitacion;
@@ -54,11 +54,11 @@ public class Reserva {
         this.anio = anio;
     }
 
-    public Cliente getCliente() {
+    public Pasajero getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(Pasajero cliente) {
         this.cliente = cliente;
     }
 

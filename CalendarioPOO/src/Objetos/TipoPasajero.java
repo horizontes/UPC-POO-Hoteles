@@ -3,11 +3,11 @@
 package Objetos;
 
 
-public class TipoCliente {
+public class TipoPasajero {
     
     private String tipoCliente;
 
-    public TipoCliente(String tipoCliente) {
+    public TipoPasajero(String tipoCliente) {
         this.tipoCliente=tipoCliente;
     }
     

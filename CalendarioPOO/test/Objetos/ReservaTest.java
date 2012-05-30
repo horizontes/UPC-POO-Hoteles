@@ -21,9 +21,9 @@ public class ReservaTest {
     @Test
     public void QueLosIdSeanCorrelativos() {
 
-        Cliente cliente1 = new Cliente("Jorge", "Chavez");
-        Cliente cliente2 = new Cliente("Miguel", "Grau");
-        Cliente cliente3 = new Cliente("Francisco", "Bolognesi");
+        Pasajero cliente1 = new Pasajero("Jorge", "Chavez");
+        Pasajero cliente2 = new Pasajero("Miguel", "Grau");
+        Pasajero cliente3 = new Pasajero("Francisco", "Bolognesi");
         TipoHabitacion tipoHabitacion = new TipoHabitacion("Suite");
         Habitacion habitacion101 = new Habitacion(101, tipoHabitacion);
         Habitacion habitacion102 = new Habitacion(102, tipoHabitacion);
@@ -41,9 +41,9 @@ public class ReservaTest {
     @Test
     public void QueNoSeanNull() {
 
-        Cliente cliente1 = new Cliente("Jorge", "Chavez");
-        Cliente cliente2 = new Cliente("Miguel", "Grau");
-        Cliente cliente3 = new Cliente("Francisco", "Bolognesi");
+        Pasajero cliente1 = new Pasajero("Jorge", "Chavez");
+        Pasajero cliente2 = new Pasajero("Miguel", "Grau");
+        Pasajero cliente3 = new Pasajero("Francisco", "Bolognesi");
         TipoHabitacion tipoHabitacion = new TipoHabitacion("Suite");
         Habitacion habitacion101 = new Habitacion(101, tipoHabitacion);
         Habitacion habitacion102 = new Habitacion(102, tipoHabitacion);
