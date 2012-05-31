@@ -23,6 +23,14 @@ public class TipoHabitacionTest {
         String expResult = "Suite";
         String result = tipoHabitacion.getTipo();
         assertEquals(expResult, result);
+        assertFalse(tipoHabitacion.errorObject);
     }
-
+    
+    @Test
+    public void QueLogeeLosValoresNull() {
+        TipoHabitacion tipoHabitacion = new TipoHabitacion(null);
+        System.out.println("En caso de valores null el flag de valores nulos se activa y detiene los procesos");
+        assertTrue(tipoHabitacion.errorObject);
+    }
+    
 }

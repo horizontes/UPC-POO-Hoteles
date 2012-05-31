@@ -8,11 +8,13 @@ import modelos.Fecha;
 import modelos.Mes;
 import modelos.Reserva;
 import controladores.ControladorCalendario;
+import java.awt.Color;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -27,7 +29,8 @@ public class Calendario extends javax.swing.JFrame {
         initComponents();
         iniciarCalendario();
         iniciarComboBoxs();
-        
+
+
     }
 
     private void iniciarCalendario() {
@@ -40,8 +43,13 @@ public class Calendario extends javax.swing.JFrame {
         //Fechas en español
         Fecha.traductoActivado = true;
         //Llenado de columna de la tabla calendario
-        iniciarTablaCalendario(tabListaHabitaciones, tabCalendarioReservas, 1, dia, mes, anio,
+        iniciarTablaCalendario(tabCalendarioReservas, tabListaHabitaciones, 1, dia, mes, anio,
                 listaHabitacionesTablaSelected, radBtnOrdenarHabTipo.isSelected());
+        tabCalendarioReservas.setColumnSelectionAllowed(true);
+        tabCalendarioReservas.setAutoCreateColumnsFromModel(false);
+        tabCalendarioReservas.setRowSelectionAllowed(false);
+
+
 
     }
 
@@ -76,9 +84,9 @@ public class Calendario extends javax.swing.JFrame {
         btnHoy = new javax.swing.JButton();
         btnSiguiente = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tabCalendarioReservas = new javax.swing.JTable();
+        tabListaHabitaciones = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tabListaHabitaciones = new javax.swing.JTable(){
+        tabCalendarioReservas = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
             }
@@ -170,7 +178,7 @@ public class Calendario extends javax.swing.JFrame {
         btnSiguiente.setBounds(940, 10, 80, 23);
         jDesktopPane1.add(btnSiguiente, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        tabCalendarioReservas.setModel(new javax.swing.table.DefaultTableModel(
+        tabListaHabitaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -181,13 +189,13 @@ public class Calendario extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tabCalendarioReservas.setRowSelectionAllowed(false);
-        jScrollPane2.setViewportView(tabCalendarioReservas);
+        tabListaHabitaciones.setRowSelectionAllowed(false);
+        jScrollPane2.setViewportView(tabListaHabitaciones);
 
         jScrollPane2.setBounds(70, 110, 950, 510);
         jDesktopPane1.add(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        tabListaHabitaciones.setModel(new javax.swing.table.DefaultTableModel(
+        tabCalendarioReservas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -198,12 +206,13 @@ public class Calendario extends javax.swing.JFrame {
                 "Numero de Hab."
             }
         ));
-        tabListaHabitaciones.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabCalendarioReservas.setColumnSelectionAllowed(true);
+        tabCalendarioReservas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabListaHabitacionesMouseClicked(evt);
+                tabCalendarioReservasMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tabListaHabitaciones);
+        jScrollPane1.setViewportView(tabCalendarioReservas);
 
         jScrollPane1.setBounds(10, 110, 60, 510);
         jDesktopPane1.add(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -251,7 +260,7 @@ public class Calendario extends javax.swing.JFrame {
 
     private void btnUnaSemanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnaSemanaActionPerformed
 
-        iniciarTablaCalendario(tabListaHabitaciones, tabCalendarioReservas, 1, fechaSelected.getDiaNumero(),
+        iniciarTablaCalendario(tabCalendarioReservas, tabListaHabitaciones, 1, fechaSelected.getDiaNumero(),
                 fechaSelected.getMesNumero(), fechaSelected.getAnio(), listaHabitacionesTablaSelected, radBtnOrdenarHabTipo.isSelected());
         vistaSemanasSelected = 1;
 
@@ -264,7 +273,7 @@ public class Calendario extends javax.swing.JFrame {
             int mes1 = selectedItem.getFecha().getMesNumero();
             int anio1 = selectedItem.getFecha().getAnio();
             fechaSelected = new Fecha(fechaSelected.getDiaNumero(), mes1, anio1);
-            iniciarTablaCalendario(tabListaHabitaciones, tabCalendarioReservas, vistaSemanasSelected, fechaSelected.getDiaNumero(),
+            iniciarTablaCalendario(tabCalendarioReservas, tabListaHabitaciones, vistaSemanasSelected, fechaSelected.getDiaNumero(),
                     fechaSelected.getMesNumero(), fechaSelected.getAnio(), listaHabitacionesTablaSelected,
                     radBtnOrdenarHabTipo.isSelected());
         }
@@ -273,16 +282,18 @@ public class Calendario extends javax.swing.JFrame {
 
     private void btnDosSemanasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDosSemanasActionPerformed
 
-        iniciarTablaCalendario(tabListaHabitaciones, tabCalendarioReservas, 2, fechaSelected.getDiaNumero(),
+        iniciarTablaCalendario(tabCalendarioReservas, tabListaHabitaciones, 2, fechaSelected.getDiaNumero(),
                 fechaSelected.getMesNumero(), fechaSelected.getAnio(), listaHabitacionesTablaSelected,
                 radBtnOrdenarHabTipo.isSelected());
         vistaSemanasSelected = 2;
+
+
 
     }//GEN-LAST:event_btnDosSemanasActionPerformed
 
     private void BtnTresSemanasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTresSemanasActionPerformed
 
-        iniciarTablaCalendario(tabListaHabitaciones, tabCalendarioReservas, 3, fechaSelected.getDiaNumero(),
+        iniciarTablaCalendario(tabCalendarioReservas, tabListaHabitaciones, 3, fechaSelected.getDiaNumero(),
                 fechaSelected.getMesNumero(), fechaSelected.getAnio(), listaHabitacionesTablaSelected,
                 radBtnOrdenarHabTipo.isSelected());
         vistaSemanasSelected = 3;
@@ -290,7 +301,7 @@ public class Calendario extends javax.swing.JFrame {
 
     private void btnUnMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnMesActionPerformed
 
-        iniciarTablaCalendario(tabListaHabitaciones, tabCalendarioReservas, 4, fechaSelected.getDiaNumero(),
+        iniciarTablaCalendario(tabCalendarioReservas, tabListaHabitaciones, 4, fechaSelected.getDiaNumero(),
                 fechaSelected.getMesNumero(), fechaSelected.getAnio(), listaHabitacionesTablaSelected,
                 radBtnOrdenarHabTipo.isSelected());
         vistaSemanasSelected = 4;
@@ -302,7 +313,7 @@ public class Calendario extends javax.swing.JFrame {
             avance = Calendar.DATE;
         }
         fechaSelected = fechaSelected.add(-1, avance);
-        iniciarTablaCalendario(tabListaHabitaciones, tabCalendarioReservas, vistaSemanasSelected, fechaSelected.getDiaNumero(),
+        iniciarTablaCalendario(tabCalendarioReservas, tabListaHabitaciones, vistaSemanasSelected, fechaSelected.getDiaNumero(),
                 fechaSelected.getMesNumero(), fechaSelected.getAnio(), listaHabitacionesTablaSelected,
                 radBtnOrdenarHabTipo.isSelected());
     }//GEN-LAST:event_btnAnteriorActionPerformed
@@ -317,29 +328,32 @@ public class Calendario extends javax.swing.JFrame {
             avance = Calendar.DATE;
         }
         fechaSelected = fechaSelected.add(1, avance);
-        iniciarTablaCalendario(tabListaHabitaciones, tabCalendarioReservas, vistaSemanasSelected, fechaSelected.getDiaNumero(),
+        iniciarTablaCalendario(tabCalendarioReservas, tabListaHabitaciones, vistaSemanasSelected, fechaSelected.getDiaNumero(),
                 fechaSelected.getMesNumero(), fechaSelected.getAnio(), listaHabitacionesTablaSelected,
                 radBtnOrdenarHabTipo.isSelected());
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void radBtnOrdenarHabTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radBtnOrdenarHabTipoActionPerformed
-        iniciarTablaCalendario(tabListaHabitaciones, tabCalendarioReservas, vistaSemanasSelected, fechaSelected.getDiaNumero(),
+        iniciarTablaCalendario(tabCalendarioReservas, tabListaHabitaciones, vistaSemanasSelected, fechaSelected.getDiaNumero(),
                 fechaSelected.getMesNumero(), fechaSelected.getAnio(), listaHabitacionesTablaSelected,
                 radBtnOrdenarHabTipo.isSelected());
     }//GEN-LAST:event_radBtnOrdenarHabTipoActionPerformed
 
-    private void tabListaHabitacionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabListaHabitacionesMouseClicked
+    private void tabCalendarioReservasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabCalendarioReservasMouseClicked
         if (evt.getClickCount() == 2) {
-            int columna = tabListaHabitaciones.columnAtPoint(evt.getPoint());
-            int fila = tabListaHabitaciones.rowAtPoint(evt.getPoint());
+            int columna = tabCalendarioReservas.columnAtPoint(evt.getPoint());
+            int fila = tabCalendarioReservas.rowAtPoint(evt.getPoint());
+            Reserva valueAt = null;
             try {
-                Reserva valueAt = (Reserva) tabListaHabitaciones.getValueAt(fila, columna);
+                valueAt = (Reserva) tabCalendarioReservas.getValueAt(fila, columna);
+                
                 JOptionPane.showMessageDialog(this, valueAt.toDetail(), "Detalle de Reserva", 2);
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "No hay reservación", "Detalle de Reserva", 1);
+                JOptionPane.showMessageDialog(this, "No hay reservación en este dia y esta habitación" 
+                        , "Detalle de Reserva", 1);
             }
         }
-    }//GEN-LAST:event_tabListaHabitacionesMouseClicked
+    }//GEN-LAST:event_tabCalendarioReservasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -436,7 +450,9 @@ public class Calendario extends javax.swing.JFrame {
             };
 
             jtableHabitaciones.setModel(modelo);
-
+            jtableHabitaciones.setRowSorter(new TableRowSorter(modelo){
+                
+            });
             jScrollPane1.setViewportView(jtableHabitaciones);
             DefaultTableModel modelo1 = new javax.swing.table.DefaultTableModel(
                     LlenadoDeCalendario,
@@ -452,7 +468,7 @@ public class Calendario extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jtableCalendario);
         listaHabitacionesTablaSelected = listaHabitacionesTab;
         fechaSelected = tablaCalendario.fijarFechaActualEnTabla(titulos2);
-
+        tabCalendarioReservas.setSelectionBackground(Color.lightGray);
 
 
     }
