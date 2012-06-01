@@ -9,6 +9,7 @@ public class Pasajero implements InterfaceGeneral{
     private String nombre;
     private String apellido;
     private TipoPasajero tipoCliente;
+    private boolean estadoCheck;
     private String email;
     private String tel;
     private String fax;
@@ -29,6 +30,14 @@ public class Pasajero implements InterfaceGeneral{
         }
     }
 
+    public void setEstadoCheck(boolean estadoCheck) {
+        this.estadoCheck = estadoCheck;
+    }
+
+    public boolean isEstadoCheck() {
+        return estadoCheck;
+    }
+    
     public Pasajero(String nombre, String apellido, TipoPasajero tipoCliente) {
         if (validarNulos(nombre) && validarNulos(apellido)
                 &&validarNulos(tipoCliente)) {
